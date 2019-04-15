@@ -80,18 +80,20 @@ Numeric         String          Date
                 * LONGTEXT
                 * ENUM
 
-INT
+****INT****
 ====================
 A whole number
 Nax value 2147483647
 
-VARCHAR
+****VARCHAR****
 ========================
 A variable-length string
 Between 1 & 255
 
-EXERCISE
-========================================
+******************************************
+#### EXERCISE
+******************************************
+
 USERNAME        TWEET           LIKES
 ----------------------------------------
 VARCHAR(15)     VARCHAR(140)    INT
@@ -108,8 +110,12 @@ CREATE TABLE cats
         name VARCHAR(100),
         age INT
     ),
+
+**********************
+**********************
     
-*****CREATING DB & TABLE********
+## CREATING DB & TABLE
+============================
 
 CREATE DATABASE dog_app
 ;
@@ -133,7 +139,7 @@ though not identical
 
 **********************
 
-Deleting Tables
+### Deleting Tables
 ================
 
 DROP TABLE <tablename>;
@@ -179,7 +185,7 @@ Query OK, 0 rows affected (0.00 sec)
 
 ******************************************
 
-INSERT command
+### INSERT command
 ======================================
 
 INSERT INTO dogs(name, age)
@@ -224,7 +230,7 @@ mysql> desc dogs
 
 *************************************
 
-How to check for data
+### How to check for data
 =================================
 mysql> select * from dogs
     -> ;
@@ -243,7 +249,7 @@ mysql> select * from dogs
 There is a lot more to do with SELECT command
 
 *****************************************************
-MULTIPLE INSERT
+### MULTIPLE INSERT
 ===========================
 
 INSERT INTO dogs (name, age)
@@ -256,9 +262,9 @@ Query OK, 2 rows affected (0.01 sec)
 Records: 2  Duplicates: 0  Warnings: 0
 
 *********************************************************
+#### EXERCISE
+*********************************************************
 
-EXERCISE
-================================
 mysql> CREATE DATABASE people_app;
 Query OK, 1 row affected (0.00 sec)
 
@@ -302,8 +308,9 @@ mysql> select * from people
 5 rows in set (0.00 sec)
 
 *********************************
+*********************************
 
-WARNINGS
+## WARNINGS
 ===============================
 
 SHOW WARNINGS; - will allow you to check any warnings
@@ -314,14 +321,14 @@ If a string is enter in an INT field, you will receive a warning: Incorrect inte
 
 ***********************************
 
-NULL and NOT_NULL
+## NULL and NOT_NULL
 ==================================
 Value is unknown
 
 NULL YES means it is ok that it doesn't have a value.
 The value will reflect in the table as NULL
 
-HOW TO REQUIRE NOT_NULL
+### HOW TO REQUIRE NOT_NULL
 ----------------------------------
 CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
 
@@ -383,7 +390,7 @@ mysql> desc dogs2
 
 ***********************************************
 
-DEFAULT VALUES
+## DEFAULT VALUES
 =================================
 
 Help to set up default values
@@ -415,7 +422,7 @@ If NOT_NULL is not enter, any variable could be entered in as NULL.
 
 *******************************
 
-PRIMARY KEYS
+### PRIMARY KEYS
 =================
 
 Primary KEY is used to ensure data is uniquely identifiable
@@ -488,9 +495,8 @@ mysql> select * from dogs6
 5 rows in set (0.00 sec)
 
 *****************************
-
-EXERCISE
-============================
+#### EXERCISE
+*****************************
 
 mysql> create database employee_app;
 Query OK, 1 row affected (0.00 sec)
@@ -522,14 +528,15 @@ create table employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, last_name VAR
 ****************************************
 ****************************************
 
-CRUD
-------------
+## CRUD
+===================
+
 Create - INSERT INTO
 Read
 Update
 Delete/Destroy
 
-===========================
+----------------------------
 
 mysql> create database cat_app;
 Query OK, 1 row affected (0.00 sec)
@@ -557,7 +564,7 @@ Records: 7  Duplicates: 0  Warnings: 0
 
 *********************************************************
 
-Read data
+### Read data
 ==================================
 
 SELECT * FROM cats;
@@ -682,8 +689,9 @@ mysql> select age, breed, name, cat_id from cats;
 7 rows in set (0.00 sec)
 
 *******************************************************
+*******************************************************
 
-Intro to WHERE
+## Intro to WHERE
 ===================================
 
 The WHERE clause allows you to select data specifically.
@@ -718,9 +726,8 @@ By default, case insensitive
 ----------------------------
 
 ****************************************
-
-EXERCISES
-=====================================
+#### EXERCISES
+****************************************
 
 mysql> select cat_id from cats;
 +--------+
@@ -769,8 +776,9 @@ mysql> select cat_id, age from cats where cat_id=age;
 2 rows in set (0.00 sec)
 
 ***********************************************************
+***********************************************************
 
-Intro to ALIASES
+## Intro to ALIASES
 =================================
 Easier to read results
 
@@ -816,7 +824,7 @@ mysql> desc cats
 
 *********************************************************************
 
-the UPDATE command
+### the UPDATE command
 =====================================
 
 mysql> update cats set breed='Shorthair' where breed='Tabby';
@@ -861,9 +869,8 @@ UPDATING RULE OF THUMB:
 Try SELECTing before UPDATE
 
 ********************************************************
-
-EXERCISES
-============================
+#### EXERCISES
+********************************************************
 
 mysql> update cats set name='Jack' where name='Jackson';                                                                               
 Query OK, 1 row affected (0.01 sec)
@@ -919,8 +926,9 @@ mysql> select * from cats;
 7 rows in set (0.00 sec)
 
 ****************************************************************
+****************************************************************
 
-Intro to DELETE/DESTROY
+## Intro to DELETE/DESTROY
 ==============================
 
 ***More important to select * from prior to deleting***
@@ -947,8 +955,8 @@ mysql>
 will delete the content, but not the tables
 
 ****************************************************
-
-**EXERCISE**
+#### EXERCISE
+****************************************************
 
 mysql> select * from cats;
 +--------+----------------+-------------------+------+
@@ -996,9 +1004,8 @@ mysql> select * from cats;
 Empty set (0.00 sec)
 
 ******************************************************
-
-CRUD Challenge Section
-==========================================
+#### CRUD Challenge Section
+******************************************************
 
 ***SIZE is an internal SQL term, so better to avoid using***
 
@@ -1184,9 +1191,11 @@ mysql> drop table shirts;
 Query OK, 0 rows affected (0.01 sec)
 
 **********************************************************
+**********************************************************
 
-***STRING FUNCTIONS***
-=========================================================
+===================
+## STRING FUNCTIONS
+===================
 
 Running SQL files
 
@@ -1225,7 +1234,7 @@ mysql> select * from cats;
 
 *******************************************
 
-SET UP BOOKS APP
+### SET UP BOOKS APP
 ==========================================
 
 mysql> create database books_app;
@@ -1286,7 +1295,7 @@ mysql> desc books;
 
 **************************************************************************
 
-CONCAT
+### CONCAT
 =============================
 
 CONCAT (x,y,z) combines to make one thing
@@ -1400,7 +1409,7 @@ mysql> SELECT
 **************************************************************************
 
 
-**SUBSTRING**
+### SUBSTRING
 ====================================
 
 mysql> SELECT SUBSTRING('Hello World', 1, 4);
@@ -1475,7 +1484,7 @@ mysql> source books_app/book_code.sql;
 
 ******************************************************
 
-****REPLACE****
+### REPLACE
 ==============================
 
 mysql> select replace('Hello World', 'Hell', '%$#@');
@@ -1568,8 +1577,8 @@ mysql> source books_app/book_code.sql;
 
 ********************************************************
 
-****REVERSE****
-==========================================
+### REVERSE
+===========
 
 mysql> select reverse('Hello World');
 +------------------------+
@@ -1581,8 +1590,8 @@ mysql> select reverse('Hello World');
 
 ******************************************************
 
-****CHAR_LENGTH****
-===================================
+### CHAR_LENGTH
+================
 
 mysql> select char_length('Hello World');
 +----------------------------+
@@ -1617,8 +1626,8 @@ mysql> select author_lname, char_length(author_lname) as 'length' from books;
 
 **********************************************
 
-****UPPER() & LOWER()****
-=====================================
+### UPPER() & LOWER()
+=====================
 
 mysql> select upper(title) from books;
 +-----------------------------------------------------+
@@ -1690,10 +1699,8 @@ mysql> select upper(concat(author_fname, ' ', author_lname)) as 'full name in ca
 16 rows in set (0.00 sec)
 
 **********************************************************
-
-================
-****EXERCISE****
-================
+#### EXERCISE
+**********************************************************
 
 mysql> select reverse(upper('Why does my cat look at me with such hatred?'));
 +----------------------------------------------------------------+
@@ -1873,9 +1880,10 @@ mysql> select concat(substring(title, 1, 10), '...') as 'short title', concat(au
 16 rows in set (0.00 sec)
 
 *****************************************************************
+*****************************************************************
 
 ===========================
-****REFINING SELECTIONS****
+## REFINING SELECTIONS
 ===========================
 
 mysql> source books_app/insert_books.sql
@@ -1889,7 +1897,7 @@ Records: 3  Duplicates: 0  Warnings: 0
 
 *******************************************************************
 
-****DISTINCT****
+### DISTINCT
 ================
 
 mysql> select distinct author_lname from books;
@@ -1973,7 +1981,7 @@ mysql> select distinct concat(author_fname, ' ', author_lname) as 'full name' fr
 
 ***************************************
 
-****ORDER BY****
+### ORDER BY
 =================
 How to sort results
 
@@ -2399,7 +2407,7 @@ mysql> select author_fname, author_lname from books order by author_lname, autho
 
 **********************************************************
 
-****LIMIT****
+### LIMIT
 =============
 specific number for selections
 
@@ -2582,7 +2590,7 @@ mysql> select title from books limit 5, 50;
 
 ******************************************************************
 
-****LIKE****
+### LIKE
 ============
 Allows for better searching of data
 
@@ -2629,7 +2637,7 @@ mysql> select title from books where title like '%the%';
 
 ******************************************************************
 
-****LIKE PART 2****
+### LIKE PART 2
 ===================
 the '_' wildcard
 
@@ -2708,7 +2716,7 @@ mysql> select title from books where title like "%\_%";
 1 row in set (0.00 sec)
 
 ***********************************************************
-****EXERCISES****
+#### EXERCISES
 ***********************************************************
 
 mysql> select title from books where title like '%Stories%';
@@ -2814,9 +2822,7 @@ mysql> select upper(concat('my favorit author is ', author_fname, ' ', author_ln
 *************************************************************
 *************************************************************
 
-===============
-*****COUNT*****
-===============
+### COUNT
 
 mysql> select * from books;
 +---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
@@ -3004,9 +3010,7 @@ mysql> select count(*) from books where title like '%the%';
 
 ***********************************************************
 
-==================
-*****GROUP BY*****
-==================
+### GROUP BY
 
 mysql> select title, author_lname from books;
 +-----------------------------------------------------+----------------+
@@ -3236,9 +3240,7 @@ mysql> select concat('In the ', released_year, ' ', count(*), ' book(s) released
 
 ***********************************************************
 
-============================
-*****MIN and MAX BASICS*****
-============================
+### MIN and MAX BASICS
 
 mysql> select min(released_year) from books;
 +--------------------+
@@ -3309,9 +3311,7 @@ mysql> SELECT title, pages FROM books;
 
 **********************************************************
 
-====================
-*****SUBQUERIES*****
-====================
+### SUBQUERIES 
 
 <!-- when using subqueries, the subquery runs first -->
 <!-- So "(SELECT Min(pages) FROM books" runs first -->
@@ -3359,9 +3359,7 @@ mysql> SELECT title, pages FROM books ORDER BY pages DESC LIMIT 1;
 
 ********************************************************
 
-=========================================
-***** USING Min & MAX WITH GROUP BY *****
-=========================================
+### USING Min & MAX WITH GROUP BY
 
 SELECT  author_lname,
         author_fname,
@@ -3458,9 +3456,7 @@ mysql> SELECT CONCAT(author_fname, ' ', author_lname) AS author, Max(pages) AS '
 
 ******************************************************
 
-===============
-***** SUM *****
-===============
+### SUM 
 
 mysql> SELECT SUM(pages) FROM books;
 +------------+
@@ -3520,9 +3516,7 @@ mysql> SELECT author_fname, author_lname, Sum(released_year) FROM books GROUP BY
 
 ************************************************************
 
-===============
-***** AVG *****
-===============
+### AVG
 
 mysql> SELECT AVG(released_year) FROM books;
 +--------------------+
@@ -3633,7 +3627,7 @@ mysql> SELECT author_fname AS 'first name', author_lname as 'last name', AVG(pag
 
 
 ****************************************************************************
-EXERCISES
+#### EXERCISES
 ****************************************************************************
 
 mysql> SELECT * FROM books;
@@ -3790,14 +3784,12 @@ mysql> SELECT released_year AS Year, COUNT(title) AS '# Books', AVG(pages) as 'A
 ***************************************************************
 
 ---------------------------------------------------------------
-===============================================================
-**************** REVISITNG DATA TYPES *************************
-===============================================================
+
+## REVISITNG DATA TYPES
+
 ---------------------------------------------------------------
 
-========================
-*****CHAR & VARCHAR*****
-========================
+### CHAR & VARCHAR
 
 *** Difference between CHAR & VARCHAR is that CHAR is fixed
     It is set to a specific number, so there cannot be more
@@ -3827,9 +3819,7 @@ mysql> SELECT released_year AS Year, COUNT(title) AS '# Books', AVG(pages) as 'A
 
 ****************************************************************
 
-=================
-*****DECIMAL*****
-=================
+### DECIMAL
 
     DECIMAL(5,2) > 5 is the max number of total digits, 2 is how many come after decimal
     DEMICAL(M,D)
@@ -3872,9 +3862,7 @@ mysql> SELECT * FROM items;
 
 ******************************************************
 
-==========================
-*****FLOAT and DOUBLE*****
-==========================
+### FLOAT and DOUBLE
 
 *** DECIMAL data type is a fixed point type, exact
     FLOAT & DOUBLE are floating-point data types, but approximate
@@ -3934,9 +3922,7 @@ mysql> SELECT * FROM thingies;
 
 ************************************************************
 
-==================================
-*****DATE, TIME, and DATETIME*****
-==================================
+## DATE, TIME, and DATETIME
 
 *** DATE: values with a Date but no Time
     'YYYY-MM-DD' Format
@@ -3949,9 +3935,7 @@ mysql> SELECT * FROM thingies;
     
 *********************************************************
     
-=================================
-*****Creating OUR DATE data *****
-=================================
+### Creating OUR DATE data
 
 mysql> CREATE DATABASE date_time_app;
 Query OK, 1 row affected (0.00 sec)
@@ -4031,9 +4015,7 @@ Query OK, 1 row affected (0.01 sec)
 
 *************************************************************
 
-==========================
-*****FORMATTING DATES*****
-=========================
+### FORMATTING DATES
 
 mysql> SELECT name, birthdate FROM people;
 +---------+------------+
@@ -4216,9 +4198,7 @@ mysql> SELECT name AS Name, DATE_FORMAT(birthdt, '%m/%d/%Y') AS "Born On" FROM p
 
 ***************************************************
 
-===================
-*****DATE MATH*****
-===================
+### DATE MATH
 
 **** DATEDIFF()
 https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_datediff
@@ -4332,9 +4312,8 @@ mysql> SELECT birthdt, birthdt + INTERVAL 15 MONTH + INTERVAL 10 HOUR FROM peopl
 
 **********************************************************
 
-====================
-*****TIMESTAMPS*****
-====================
+
+### TIMESTAMPS
 
 *** https://dev.mysql.com/doc/refman/5.5/en/datetime.html
         - TIMESTAMP has a range of '1970-01-01 00:00:01' UTC to '2038-01-19 03:14:07' UTC.
@@ -4428,7 +4407,7 @@ mysql> SELECT * FROM comments2 ORDER BY changed_at;
 3 rows in set (0.01 sec)
 
 ************************************************
-*****EXERCISES
+#### EXERCISES
 ************************************************
 
 *** What is a good use case for CHAR?
@@ -4527,9 +4506,7 @@ mysql> SELECT DATE_FORMAT(CURDATE(), '%M %D at %I:%i');
 ***************************************************************************
 
 -----------------------------------------------
-===============================================
-****************LOGIC OPERATORS****************
-===============================================
+## LOGIC OPERATORS
 -----------------------------------------------
         
 mysql> 
