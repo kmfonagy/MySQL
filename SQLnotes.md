@@ -1,4 +1,4 @@
-#WHAT IS SQL
+# WHAT IS SQL
     * Structured Query Language
     * SQL is the language used to interact with data in a DB
     * SQL is a relational DB
