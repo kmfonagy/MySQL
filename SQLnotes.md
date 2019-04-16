@@ -3,12 +3,12 @@
     - SQL is the language used to interact with data in a DB
     - SQL is a relational DB
 
-*** QUICK PREVIEW
+##### QUICK PREVIEW
 
 "Find all users who are 18 or older" => SELECT * FROM Users WHERE Age >= 18;
 
 
-* Working with MySWL is primarily Writing SQL
+##### Working with MySWL is primarily Writing SQL
 
 COMMON Relational DBMS > all using SQL
 - MySQL
@@ -17,13 +17,13 @@ COMMON Relational DBMS > all using SQL
 - Oracle
 - Many others
 
-*** MySQL
+#### MySQL
 
     "SELECT * FROM Users WHERE Age >= 18;"
 
 and 
             
-*** PostgesSQL
+#### PostgesSQL
 
     "SELECT * FROM Users WHERE Age >= 18;"
 
@@ -67,8 +67,9 @@ and
 
 ***************************************************
 
-*** Data Types
-    
+##### Data Types
+
+
     Numeric         String          Date
     ==========================================
     * INT <<<       * CHAR          * DATE
@@ -85,12 +86,12 @@ and
                     * LONGTEXT
                     * ENUM
 
-*** INT
+##### INT
 
     - A whole number
     - Nax value 2147483647
-    
-*** VARCHAR
+
+##### VARCHAR
 
     - A variable-length string
     - Between 1 & 255
@@ -129,11 +130,13 @@ and
     
 - Now to check if tables/dbs were created
 
+
     mysql> SHOW TABLES;
     
     mysql> SHOW COLUMNS FROM <tablename>;
 
 - Or....
+
 
     mysql> DESC <tablename>;   
 
@@ -143,7 +146,6 @@ and
 
 ### Deleting Tables
 
-
 - To delete a table use "DROP TABLE <tablename>;"
 - Create database <bakery_app>
 - Use <bakery_app>
@@ -152,7 +154,7 @@ and
 - DROP TABLE <pasteries>
 
 *****************************************************
-    
+
     mysql> CREATE DATABASE bakery_app;
     Query OK, 1 row affected (0.00 sec)
     
@@ -388,6 +390,7 @@ and
 
 - Help to set up default values
 
+***********************************************
 
     mysql> CREATE TABLE dogs3 (name VARCHAR(50) DEFAULT 'unnamed', age INT DEFAULT 99);
     Query OK, 0 rows affected (0.02 sec)
@@ -519,6 +522,7 @@ and
 
 - COULD ALSO SET UP TABLE LIKE SO:
 
+
     create table employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, last_name VARCHAR(20) NOT NULL, first_name VARCHAR(20) NOT NULL, middle_int VARCHAR(1), age INT NOT NULL, current_status VARCHAR(20) NOT NULL DEFAULT 'employed');
 
 ****************************************
@@ -582,7 +586,8 @@ and
     +--------+----------------+------------+------+
     7 rows in set (0.00 sec)
 
-*** SELECT Expression is how we select a specific column.
+- SELECT Expression is how we select a specific column.
+
 
     mysql> select name from cats;
     +----------------+
@@ -717,7 +722,7 @@ and
     +--------+------+---------+------+
     1 row in set (0.00 sec)
 
-*** By default, case insensitive
+- By default, case insensitive
 
 ****************************************
 #### EXERCISES
@@ -822,7 +827,6 @@ and
 *********************************************************************
 
 ### the UPDATE command
----------------------------------------
 
     mysql> update cats set breed='Shorthair' where breed='Tabby';
     Query OK, 2 rows affected (0.01 sec)
@@ -860,7 +864,8 @@ and
     +--------+----------------+------------+------+
     7 rows in set (0.00 sec)
 
-*** UPDATING RULE OF THUMB:
+- UPDATING RULE OF THUMB:
+
 
     Try SELECTing before UPDATE
 
@@ -925,11 +930,10 @@ and
 ****************************************************************
 
 ## Intro to DELETE/DESTROY
-------------------------------------
 
 - More important to select * from <table> prior to deleting
 
-*******************************************************************
+--------------------------------------------------------
 
     mysql> delete from cats where name='egg';
     Query OK, 1 row affected (0.00 sec)
@@ -949,8 +953,7 @@ and
     
     mysql> 
 
-- DELETE FROM cats;
-- will delete the content, but not the tables
+- "DELETE FROM cats;" will delete the content, but not the tables
 
 ****************************************************
 #### EXERCISE
@@ -1007,7 +1010,7 @@ and
 
 - SIZE is an internal SQL term, so better to avoid using
 
-********************************************************
+------------------------------------------------------------------
 
     mysql> create database shirts_db;
     Query OK, 1 row affected (0.00 sec)
@@ -1194,13 +1197,12 @@ and
 **********************************************************
 
 ## STRING FUNCTIONS
----------------------------------
 
 - Running SQL files
 - When creating the file, be sure to use .sql at the end
 - To run: source file_name.sql
 
-************************************************************
+--------------------------------------------------------------
 
     mysql> use cat_app;
     Database changed
@@ -1234,7 +1236,8 @@ and
 *******************************************
 
 ### SET UP BOOKS APP
----------------------------------------------
+
+------------------------------------------------
 
     mysql> create database books_app;
     Query OK, 1 row affected (0.01 sec)
@@ -1295,7 +1298,6 @@ and
 **************************************************************************
 
 ### CONCAT
-----------------------------------------------
 
 - CONCAT (x,y,z) combines to make one thing
 - CONCAT(column, anotherColumn)
@@ -1374,7 +1376,8 @@ and
     +---------+----------------+----------------------+
     16 rows in set (0.00 sec)
     
-*** CONCAT_WS
+- CONCAT_WS
+
 
     mysql> SELECT
         ->     CONCAT_WS(' - ', title, author_fname, author_lname)
@@ -1404,7 +1407,8 @@ and
 **************************************************************************
 
 ### SUBSTRING
----------------------------------------
+
+***************************************************************************
 
     mysql> SELECT SUBSTRING('Hello World', 1, 4);
     +--------------------------------+
@@ -1479,7 +1483,8 @@ and
 ******************************************************
 
 ### REPLACE
----------------------------------------
+
+******************************************************
 
     mysql> select replace('Hello World', 'Hell', '%$#@');
     +----------------------------------------+
@@ -1514,6 +1519,7 @@ and
     1 row in set (0.00 sec)
 
 - REPLACE is case sensitive
+
 
     mysql> select replace('chesse bread coffee milk', ' ', ' and ');                                                                            
     +---------------------------------------------------+
@@ -1572,7 +1578,8 @@ and
 ********************************************************
 
 ### REVERSE
----------------------------------------
+
+********************************************************
 
     mysql> select reverse('Hello World');
     +------------------------+
@@ -1585,7 +1592,8 @@ and
 ******************************************************
 
 ### CHAR_LENGTH
--------------------------------------------------
+
+*****************************************************
 
     mysql> select char_length('Hello World');
     +----------------------------+
@@ -1621,7 +1629,8 @@ and
 **********************************************
 
 ### UPPER() & LOWER()
----------------------------------------------
+
+***********************************************
 
     mysql> select upper(title) from books;
     +-----------------------------------------------------+
@@ -1877,7 +1886,8 @@ and
 *****************************************************************
 
 ## REFINING SELECTIONS
--------------------------------------------------------------
+
+---------------------------------------------------------------
 
     mysql> source books_app/insert_books.sql
     ERROR 2006 (HY000): MySQL server has gone away
@@ -1975,11 +1985,11 @@ and
 ***************************************
 
 ### ORDER BY
----------------------------------------
+
 
 - How to sort results
 
-**********************************************
+---------------------------------------
 
     mysql> select author_lname from books order by author_lname;
     +----------------+
@@ -2404,11 +2414,11 @@ and
 **********************************************************
 
 ### LIMIT
----------------------------------------
+
 
 - Specific number for selections
 
-*****************************************************
+---------------------------------------
 
     mysql> select title from books;
     +-----------------------------------------------------+
@@ -2446,7 +2456,8 @@ and
     +-----------------+
     3 rows in set (0.00 sec)
 
-*** Not as useful on it's own
+- Not as useful on it's own
+
 
     mysql> select title, released_year from books order by 2;
     +-----------------------------------------------------+---------------+
@@ -2524,12 +2535,14 @@ and
     +----------------------------------+---------------+
     5 rows in set (0.00 sec)
 
-*** Example of use: used in pagination of content on the front-end
+- Example of use: used in pagination of content on the front-end
+- If wanting to retreive all rows from a certain offset to the end use a random large number 
+  graeter than the amount of items in the table
 
-*** If wanting to retreive all rows from a certain offset to the end use a random large number,
-    graeter than the amount of items in the table
-    
-        - select * from <tbl> limit 95, 18446744073709551615;
+
+    "select * from <tbl> limit 95, 18446744073709551615;""
+
+---------------------------------------------------------------------
 
     mysql> select title from books limit 5;
     +----------------------------------+
@@ -2588,11 +2601,10 @@ and
 ******************************************************************
 
 ### LIKE
----------------------------------------------
 
 - Allows for better searching of data
 
-**********************************************************************
+---------------------------------------------
 
     mysql> select author_fname from books where author_fname like '%da%';
     +--------------+
@@ -2638,11 +2650,10 @@ and
 ******************************************************************
 
 ### LIKE PART 2
--------------------------------------------
 
 - The '_' wildcard
 
-*******************************************************************
+-------------------------------------------
 
     mysql> select title, stock_quantity from books; 
     +-----------------------------------------------------+----------------+
@@ -2698,9 +2709,9 @@ and
     +-----------------------------------------------------+----------------+
     13 rows in set (0.01 sec)
 
-*** '%' means anything, '__' means length of characters
+- '%' means anything, '__' means length of characters
+- How to select an item if % or _ are used as a character?
 
-*** How to select an item if % or _ are used as a character?
 
     mysql> select title from books where title like "%\%%";
     +-------------+
@@ -2972,8 +2983,9 @@ and
     +--------------+----------------+
     19 rows in set (0.00 sec)
 
-*** Shows the combo of both distinct fname & distinct lname
-    
+- Shows the combo of both distinct fname & distinct lname
+
+
     mysql> select count(distinct author_lname, author_fname) from books; 
     +--------------------------------------------+
     | count(distinct author_lname, author_fname) |
@@ -3003,7 +3015,8 @@ and
     +--------------+
     1 row in set (0.00 sec)
 
-*** Better way
+- Better way
+
 
     mysql> select count(*) from books where title like '%the%';                                                                                   
     +----------+
@@ -3044,8 +3057,9 @@ and
     +-----------------------------------------------------+----------------+
     19 rows in set (0.00 sec)
 
-*** This will create a 'super row' with all of the authors books in one row
-    
+- This will create a 'super row' with all of the authors books in one row
+
+
     mysql> select title, author_lname from books group by author_lname;                                                                           
     +-----------------------------------------------------+----------------+
     | title                                               | author_lname   |
@@ -3108,8 +3122,9 @@ and
     +-----------------------------------------------------+--------------+----------------+
     19 rows in set (0.00 sec)
 
-*** This following is not really useful, as it does not distinguish if there are more than one author with the same last name
-    
+- This following is not really useful, as it does not distinguish if there are more than one author with the same last name
+
+
     mysql> select title, author_fname, author_lname from books group by author_lname;
     +-----------------------------------------------------+--------------+----------------+
     | title                                               | author_fname | author_lname   |
@@ -3128,7 +3143,8 @@ and
     +-----------------------------------------------------+--------------+----------------+
     11 rows in set (0.00 sec)
 
-*** Still has problem with last name, if there are multiple
+- Still has problem with last name, if there are multiple
+
 
     mysql> select author_fname, author_lname, count(*) from books group by author_lname;                                                  
     +--------------+----------------+----------+
@@ -3284,7 +3300,8 @@ and
     +------------+
     1 row in set (0.00 sec)
 
-*** This provides the max pages, and the first book title in the DB, which doesn't match
+- This provides the max pages, and the first book title in the DB, which doesn't match
+
 
     mysql> SELECT Max(pages), title FROM books;
     +------------+--------------+
@@ -3323,14 +3340,13 @@ and
 **********************************************************
 
 ### SUBQUERIES
----------------------------------------------
 
 - When using subqueries, the subquery runs first -->
 - So "(SELECT Min(pages) FROM books" runs first -->
 - Then SELECT * FROM books -->
 - mysql> SELECT * FROM books WHERE pages = (SELECT Min(pages) FROM books);
 
-**********************************************************
+---------------------------------------------
 
     +---------+-----------------------------------------------------+--------------+--------------+---------------+----------------+-------+
     | book_id | title                                               | author_fname | author_lname | released_year | stock_quantity | pages |
@@ -3347,7 +3363,8 @@ and
     +-------------------------------------------+-------+
     1 row in set (0.00 sec)
 
-*** As the previous method is actually running two queries, a faster/better way is as follows
+- As the previous method is actually running two queries, a faster/better way is as follows
+
 
     mysql> SELECT * FROM books ORDER BY pages ASC LIMIT 1;                                                                                        
     +---------+-----------------------------------------------------+--------------+--------------+---------------+----------------+-------+
@@ -3376,16 +3393,15 @@ and
 ********************************************************
 
 ### USING Min & MAX WITH GROUP BY
----------------------------------------
 
-- SELECT  author_lname,
+SELECT  author_lname,
     author_fname,
     Min(released_year)
-  FROM    books
-  GROUP   BY author_lname,
-          author_fname;
+FROM    books
+GROUP   BY author_lname,
+        author_fname;
 
-********************************************************
+---------------------------------------
 
     mysql> SELECT author_fname, author_lname, Min(released_year)
         -> FROM books
@@ -3408,8 +3424,9 @@ and
     +--------------+----------------+--------------------+
     12 rows in set (0.01 sec)
     
-*** If you leave off 'author_fname', then it will bunch up authors with the same last name
-    
+- If you leave off 'author_fname', then it will bunch up authors with the same last name
+
+
     mysql> SELECT Max(pages)
         -> FROM books
         -> GROUP BY author_lname, author_fname;
@@ -3644,8 +3661,7 @@ and
     +------------+----------------+-----------------------+
     12 rows in set (0.00 sec)
     
-*** due to DATA TYPE, automatically includes 4 decimals, regardless if a complete number
-
+- due to DATA TYPE, automatically includes 4 decimals, regardless if a complete number
 
 ****************************************************************************
 #### EXERCISES
@@ -3678,7 +3694,8 @@ and
     19 rows in set (0.00 sec)
 
 
-*** Print the number of books in the database
+- Print the number of books in the database
+
 
     mysql> SELECT COUNT(*) FROM books;
     +----------+
@@ -3688,7 +3705,8 @@ and
     +----------+
     1 row in set (0.00 sec)
 
-*** Print out how many books were released in each year
+- Print out how many books were released in each year
+
 
     mysql> SELECT released_year AS 'Year Released', COUNT(*) AS 'Books Released' FROM books GROUP BY released_year;                               +---------------+----------------+
     | Year Released | Books Released |
@@ -3712,7 +3730,8 @@ and
     +---------------+----------------+
     16 rows in set (0.00 sec)
 
-*** Print number in stock for each released year
+- Print number in stock for each released year
+
 
     mysql> SELECT released_year AS 'Year Released', Sum(stock_quantity) AS 'Books Released' FROM books WHERE released_year LIKE '%' GROUP BY released_year;
     +---------------+----------------+
@@ -3737,7 +3756,8 @@ and
     +---------------+----------------+
     16 rows in set (0.00 sec)
 
-*** Print out the total number of books in stock
+- Print out the total number of books in stock
+
 
     mysql> SELECT Sum(stock_quantity) AS 'In Stock' FROM books;
     +----------+
@@ -3747,7 +3767,8 @@ and
     +----------+
     1 row in set (0.00 sec)
 
-*** Find average released_year for each author
+- Find average released_year for each author
+
 
     mysql> SELECT CONCAT(author_fname, ' ', author_lname) AS Author, AVG(released_year) AS 'Average Release Year' FROM books GROUP BY author_lname, author_fname;
     +----------------------+----------------------+
@@ -3768,7 +3789,8 @@ and
     +----------------------+----------------------+
     12 rows in set (0.01 sec)
 
-*** Find the full name of the author who wrote the longest book
+- Find the full name of the author who wrote the longest book
+
 
     mysql> SELECT CONCAT(author_fname, ' ', author_lname) AS Author, pages AS Pages FROM books ORDER BY pages DESC LIMIT 1;                      
     +----------------+-------+
@@ -3804,17 +3826,18 @@ and
 ***************************************************************
 ***************************************************************
 
----------------------------------------------------------------
 ## REVISITNG DATA TYPES
----------------------------------------------------------------
+
+******************************************************************
 
 ### CHAR & VARCHAR
-------------------------------
+
 
 - Difference between CHAR & VARCHAR is that CHAR is fixed
 - It is set to a specific number, so there cannot be more characters than what it is fixed to, and it will auto-fill the blank space.
-    
-*** Explanatory Text
+
+
+    #### Explanatory Text
     The length of a CHAR column is fixed to the length that
     you DECLARE WHEN you CREATE the TABLE. The length can be
     ANY VALUE FROM 0 TO 255. WHEN CHAR VALUES ARE STORED, they
@@ -3828,7 +3851,7 @@ and
   "Yes/No Flags: Y/N"
   "SEX: M/F"
 
-        
+
     VALUE   | CHAR(4)   | STORAGE   | VARCHAR(4)    | STORAGE
     ---------------------------------------------------------
     ' '     | '____'    | 4 bytes   | ' '           | 1 byte
@@ -3839,21 +3862,21 @@ and
 ****************************************************************
 
 ### DECIMAL
------------------------------------
 
 - DECIMAL(5,2) > 5 is the max number of total digits, 2 is how many come after decimal
 - DEMICAL(M,D)
 - "M" has a range of 1 to 65
 - "D" has a range of 0 to 30
 
-****************************************************************
+-----------------------------------
 
     mysql> use dog_app;
     
     mysql> CREATE TABLE items (price DECIMAL(5,2));
     Query OK, 0 rows affected (0.01 sec)
     
-*** The table inserts the value as the highest possible decimal
+- The table inserts the value as the highest possible decimal
+
 
     mysql> INSERT INTO items(price) VALUES(7987654);
     Query OK, 1 row affected, 1 warning (0.01 sec)
@@ -3861,7 +3884,8 @@ and
     mysql> INSERT INTO items(price) VALUES(34.88);
     Query OK, 1 row affected (0.01 sec)
     
-*** The table rounds the decimal up to the next whole number
+- The table rounds the decimal up to the next whole number
+
 
     mysql> INSERT INTO items(price) VALUES(298.9999);
     Query OK, 1 row affected, 1 warning (0.01 sec)
@@ -3893,18 +3917,20 @@ and
 - FLOAT & DOUBLE are able to store larger numbers, using less space
 - But, it comes at the cost of percision
 
-******************************************************
-    
+-------------------------------------------------------------------------------
+
     Data Type   | Memory Needed | Percision Issues
     ----------------------------------------------
     FLOAT       | 4 bytes       | ~7 digits
     DOUBLE      | 8 bytes       | ~15 digits
     
-*** Meaning, with FLOAT: if 1000001 is stored, the last 1 might not always be 1 when we retrieve it
-    
+- Meaning, with FLOAT: if 1000001 is stored, the last 1 might not always be 1 when we retrieve it
+
+
     Double is more percise
     
-*** Which is best to use: Always use DECIMAL, unless percision doesn' matter
+- Which is best to use: Always use DECIMAL, unless percision doesn' matter
+
 
     mysql> CREATE TABLE thingies (price FLOAT);
     Query OK, 0 rows affected (0.02 sec)
@@ -3947,10 +3973,7 @@ and
 
 ************************************************************
 
-----------------------------------------------
 ## DATE, TIME, and DATETIME
-----------------------------------------------
-
 
 - DATE: values with a Date but no Time: 'YYYY-MM-DD' Format
 - TIME: values with a Time but no Date: 'HH:MM:SS' Format
@@ -4162,8 +4185,9 @@ and
     +---------------------------------------------------------------------+
     3 rows in set (0.00 sec)
     
-*** [DATE_FORMAT()](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_date-format)
-    
+- [DATE_FORMAT()](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_date-format)
+
+
     mysql> SELECT DATE_FORMAT('1982-08-29', '%M %D, %Y');
     +----------------------------------------+
     | DATE_FORMAT('1982-08-29', '%M %D, %Y') |
@@ -4223,10 +4247,11 @@ and
 ***************************************************
 
 ### DATE MATH
+
 -----------------------
 
-*** [DATEDIFF()](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_datediff)
-    
+- [DATEDIFF()](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_datediff)
+
 
     mysql> SELECT * FROM people;
     +---------+------------+-----------+---------------------+
@@ -4258,7 +4283,7 @@ and
     +---------+------------+----------------------------+
     3 rows in set (0.00 sec)
     
-*** [DATE_ADD()](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_date-add)
+- [DATE_ADD()](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_date-add)
 
 
     mysql> SELECT birthdt FROM people;
@@ -4301,9 +4326,9 @@ and
     +---------------------+---------------------------------------+
     3 rows in set (0.00 sec)
     
-*** [DATE_SUB()](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_date-sub) - works on the same concept as DATE_ADD
-        
-        
+- [DATE_SUB()](https://dev.mysql.com/doc/refman/5.5/en/date-and-time-functions.html#function_date-sub) - works on the same concept as DATE_ADD
+
+
     mysql> SELECT birthdt, birthdt + INTERVAL 1 MONTH FROM people;
     +---------------------+----------------------------+
     | birthdt             | birthdt + INTERVAL 1 MONTH |
@@ -4338,16 +4363,15 @@ and
 
 
 ### TIMESTAMPS
---------------------------------
 
-*** [TIMESTAMPS](https://dev.mysql.com/doc/refman/5.5/en/datetime.html)
+[TIMESTAMPS](https://dev.mysql.com/doc/refman/5.5/en/datetime.html)
 
 - TIMESTAMP has a range of '1970-01-01 00:00:01' UTC to '2038-01-19 03:14:07' UTC.
 - Not ideal for saving birthdates, as it is limited
 - Best used when saving once something was created or modified
 - TIMESTAMPS use up less space
 
-***************************************************************
+------------------------------------------------------------
 
     mysql> CREATE TABLE comments(
         ->  content VARCHAR(100),
@@ -4438,11 +4462,13 @@ and
 #### EXERCISES
 ************************************************
 
-*** What is a good use case for CHAR?
+- What is a good use case for CHAR?
+
+
+    - For situations where you know the text will have a fixed length
     
-    - for situations where you know the text will have a fixed length
-    
-*** CREATE TABLE inventory(item_name _________, price __________, quantity _______);
+- CREATE TABLE inventory(item_name _________, price __________, quantity _______);
+
 
     mysql> CREATE TABLE inventory(
         item_name VARCHAR(100),
@@ -4450,12 +4476,14 @@ and
         quantity INT
     );
         
-*** Dfference between DATETIME and TIMESTAMP?
-    
+- Dfference between DATETIME and TIMESTAMP?
+
+
     - DATETIME does not have a specific range, it is best for logging things like birthdate
     - TIMESTAMP is limited in it's range, and best used for documenting creation & modification of content
     
-*** Print out just the current time
+- Print out just the current time
+
 
     mysql> SELECT CURTIME();
     +-----------+
@@ -4465,7 +4493,8 @@ and
     +-----------+
     1 row in set (0.00 sec)
         
-*** Print out just the current date
+- Print out just the current date
+
 
     mysql> SELECT CURDATE();
     +------------+
@@ -4475,7 +4504,8 @@ and
     +------------+
     1 row in set (0.00 sec)
     
-*** Print out the current # day of the week
+- Print out the current # day of the week
+
 
     SELECT DATE_FORMAT('2019-04-11', '%w');
     +---------------------------------+
@@ -4485,7 +4515,8 @@ and
     +---------------------------------+
     1 row in set (0.00 sec)
     
-*** Print out the current name day of the week
+- Print out the current name day of the week
+
 
     mysql> SELECT DATE_FORMAT('2019-04-11', '%W');
     +---------------------------------+
@@ -4495,7 +4526,8 @@ and
     +---------------------------------+
     1 row in set (0.00 sec)
     
-*** Print out the current day & time using mm/dd/yyyy
+- Print out the current day & time using mm/dd/yyyy
+
 
     mysql> SELECT DATE_FORMAT(CURDATE(), '%m/%d/%Y');                                                                                            
     +------------------------------------+
@@ -4505,7 +4537,8 @@ and
     +------------------------------------+
     1 row in set (0.01 sec)
 
-*** Print out the current day & time using format: January 2nd at 3:15, April 1st at 10:18
+- Print out the current day & time using format: January 2nd at 3:15, April 1st at 10:18
+
 
     mysql> SELECT DATE_FORMAT(CURDATE(), '%M %D at %I:%i');
     +------------------------------------------+
@@ -4515,10 +4548,11 @@ and
     +------------------------------------------+
     1 row in set (0.00 sec)
     
-*** Create a tweets table that stores:
+- Create a tweets table that stores:
     - The tweet content
     - A Username
     - Time it was created
+
 
     CREATE TABLE tweets(
         content VARCHAR(280),
@@ -4529,11 +4563,10 @@ and
 ***************************************************************************
 ***************************************************************************
 
------------------------------------------------
 ## LOGIC OPERATORS
------------------------------------------------
 
 [MySQL Operators](https://dev.mysql.com/doc/refman/8.0/en/non-typed-operators.html)
+**********************************************************************************
 
 ### NOT EQUAL ( != )
 ----------------------------------
