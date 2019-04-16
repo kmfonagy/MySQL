@@ -61,7 +61,6 @@ and
 *******************************************************
 
 ## TABLES
------------------
 
 - Heart of SQL
 - A db is just a bunch of tables
@@ -121,7 +120,6 @@ and
 **********************
     
 ## CREATING DB & TABLE
-============================
 
     mysql> CREATE DATABASE dog_app;
     
@@ -129,25 +127,24 @@ and
     
     mysql> CREATE TABLE dogs (name VARCHAR(100), age INT);
     
-*** Now to check if tables/dbs were created
+- Now to check if tables/dbs were created
 
     mysql> SHOW TABLES;
     
     mysql> SHOW COLUMNS FROM <tablename>;
 
-*** Or....
+- Or....
 
     mysql> DESC <tablename>;   
 
-*** Though not identical
+- Though not identical
 
 **********************
 
 ### Deleting Tables
-----------------------------
 
-*** To delete a table use "DROP TABLE <tablename>;"
 
+- To delete a table use "DROP TABLE <tablename>;"
 - Create database <bakery_app>
 - Use <bakery_app>
 - Create the table <pasteries (name VARCHAR(50), quantity INT)>
@@ -183,9 +180,8 @@ and
 ******************************************
 
 ### INSERT command
-------------------------------------
 
-*** INSERT INTO dogs(name, age) VALUES ('Name', X);
+- INSERT INTO dogs(name, age) VALUES ('Name', X);
 
 ******************************************
 
@@ -228,7 +224,6 @@ and
 *************************************
 
 ### How to check for data
--------------------------------------
 
     mysql> select * from dogs
         -> ;
@@ -244,14 +239,13 @@ and
     +-------+------+
     6 rows in set (0.00 sec)
     
-*** There is a lot more to do with SELECT command
+- There is a lot more to do with SELECT command
 
 *****************************************************
 
 ### MULTIPLE INSERT
-------------------------------------
 
-*** INSERT INTO dogs (name, age)
+    INSERT INTO dogs (name, age)
     VALUES ('name1',  5),
            ('name2', 3),
            ('name3', 7);
@@ -312,7 +306,6 @@ and
 *********************************
 
 ## WARNINGS
---------------------------------------------
 
 - SHOW WARNINGS; - will allow you to check any warnings
 - If a string is too long, it will get truncated. So the extra characters will be completely cut off
@@ -321,7 +314,6 @@ and
 ***********************************
 
 ## NULL and NOT_NULL
-------------------------------------
 
 - Value is unknown
 - NULL YES means it is ok that it doesn't have a value.
@@ -330,9 +322,9 @@ and
 ************************************************
 
 ### HOW TO REQUIRE NOT_NULL
-----------------------------------
 
-*** CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
+- CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
+
 
     mysql> CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
     Query OK, 0 rows affected (0.05 sec)
@@ -393,9 +385,9 @@ and
 ***********************************************
 
 ## DEFAULT VALUES
-----------------------------------------------------
 
-*** Help to set up default values
+- Help to set up default values
+
 
     mysql> CREATE TABLE dogs3 (name VARCHAR(50) DEFAULT 'unnamed', age INT DEFAULT 99);
     Query OK, 0 rows affected (0.02 sec)
@@ -420,12 +412,11 @@ and
     mysql> insert into dogs4 (name) values (Null);                                                                                              
     ERROR 1048 (23000): Column 'name' cannot be null
 
-*** If NOT_NULL is not enter, any variable could be entered in as NULL.
+- If NOT_NULL is not enter, any variable could be entered in as NULL.
 
 *******************************
 
 ### PRIMARY KEYS
---------------------------------------
 
 - Primary KEY is used to ensure data is uniquely identifiable
 - To help keep things unique, add a Primary Key
@@ -526,7 +517,7 @@ and
     6 rows in set (0.00 sec)
 
 
-*** COULD ALSO SET UP TABLE LIKE SO:
+- COULD ALSO SET UP TABLE LIKE SO:
 
     create table employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, last_name VARCHAR(20) NOT NULL, first_name VARCHAR(20) NOT NULL, middle_int VARCHAR(1), age INT NOT NULL, current_status VARCHAR(20) NOT NULL DEFAULT 'employed');
 
@@ -534,9 +525,8 @@ and
 ****************************************
 
 ## CRUD
-----------------------------------
 
-- Create - INSERT INTO
+- Create (INSERT INTO)
 - Read
 - Update
 - Delete/Destroy
