@@ -4508,10 +4508,21 @@ mysql> SELECT DATE_FORMAT(CURDATE(), '%M %D at %I:%i');
 -----------------------------------------------
 ## LOGIC OPERATORS
 -----------------------------------------------
-        
-mysql> 
 
+[MySQL Operators](https://dev.mysql.com/doc/refman/8.0/en/non-typed-operators.html)
 
+### NOT EQUAL ( != )
+----------------------------------
+
+    mysql> SELECT title, released_year FROM books WHERE released_year = 2017;
+    +----------------------+---------------+
+    | title                | released_year |
+    +----------------------+---------------+
+    | Lincoln In The Bardo |          2017 |
+    +----------------------+---------------+
+    1 row in set (0.00 sec)
+    
+    mysql>
 
 
 
