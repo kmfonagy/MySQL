@@ -331,6 +331,7 @@ and
     mysql> CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
     Query OK, 0 rows affected (0.05 sec)
     
+
     mysql> desc dogs2
         -> ;
     +-------+--------------+------+-----+---------+-------+
@@ -4579,7 +4580,7 @@ GROUP   BY author_lname,
     +----------------------+---------------+
     1 row in set (0.00 sec)
     
-    mysql>
+    mysql> 
 
 
 
