@@ -327,10 +327,10 @@ and
 
 - CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
 
+***********************************************
 
     mysql> CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
     Query OK, 0 rows affected (0.05 sec)
-    
 
     mysql> desc dogs2
         -> ;
@@ -526,8 +526,7 @@ and
 
     create table employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, last_name VARCHAR(20) NOT NULL, first_name VARCHAR(20) NOT NULL, middle_int VARCHAR(1), age INT NOT NULL, current_status VARCHAR(20) NOT NULL DEFAULT 'employed');
 
-****************************************
-****************************************
+=========================================================
 
 ## CRUD
 
