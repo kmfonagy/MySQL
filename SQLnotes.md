@@ -65,7 +65,7 @@ and
 - Heart of SQL
 - A db is just a bunch of tables
 
-***************************************************
+-----------------------------------------------------
 
 ##### Data Types
 
@@ -118,7 +118,6 @@ and
         ),
 
 **********************
-**********************
     
 ## CREATING DB & TABLE
 
@@ -153,7 +152,7 @@ and
 - Desc <pasteries>
 - DROP TABLE <pasteries>
 
-*****************************************************
+------------------------------------------------
 
     mysql> CREATE DATABASE bakery_app;
     Query OK, 1 row affected (0.00 sec)
@@ -185,7 +184,7 @@ and
 
 - INSERT INTO dogs(name, age) VALUES ('Name', X);
 
-******************************************
+-----------------------------------------------------
 
     mysql> use dog_app
     Database changed
@@ -227,6 +226,8 @@ and
 
 ### How to check for data
 
+---------------------------------------
+
     mysql> select * from dogs
         -> ;
     +-------+------+
@@ -252,7 +253,7 @@ and
            ('name2', 3),
            ('name3', 7);
            
-**********************************
+--------------------------------------------------
       
     mysql> INSERT INTO dogs (name, age) VALUES ('Roxy', 10), ('Boo', 1);
     Query OK, 2 rows affected (0.01 sec)
@@ -305,7 +306,6 @@ and
     5 rows in set (0.00 sec)
 
 *********************************
-*********************************
 
 ## WARNINGS
 
@@ -313,7 +313,7 @@ and
 - If a string is too long, it will get truncated. So the extra characters will be completely cut off
 - If a string is enter in an INT field, you will receive a warning: Incorrect interger value. The INT will be saved as 0.
 
-***********************************
+***********************************************
 
 ## NULL and NOT_NULL
 
@@ -327,7 +327,7 @@ and
 
 - CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
 
-***********************************************
+-------------------------------------------
 
     mysql> CREATE TABLE dogs2 (name VARCHAR(100) NOT NULL, age INT NOT NULL);
     Query OK, 0 rows affected (0.05 sec)
@@ -391,7 +391,7 @@ and
 
 - Help to set up default values
 
-***********************************************
+--------------------------------------------
 
     mysql> CREATE TABLE dogs3 (name VARCHAR(50) DEFAULT 'unnamed', age INT DEFAULT 99);
     Query OK, 0 rows affected (0.02 sec)
@@ -425,7 +425,7 @@ and
 - Primary KEY is used to ensure data is uniquely identifiable
 - To help keep things unique, add a Primary Key
 
-***********************************************
+-------------------------------------
 
     mysql> CREATE TABLE dogs5 (dog_id INT NOT NULL, name VARCHAR(50), age INT, PRIMARY KEY (dog_id));                                           
     Query OK, 0 rows affected (0.01 sec)
@@ -526,7 +526,7 @@ and
 
     create table employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, last_name VARCHAR(20) NOT NULL, first_name VARCHAR(20) NOT NULL, middle_int VARCHAR(1), age INT NOT NULL, current_status VARCHAR(20) NOT NULL DEFAULT 'employed');
 
-=========================================================
+********************************************************
 
 ## CRUD
 
@@ -535,7 +535,7 @@ and
 - Update
 - Delete/Destroy
 
-******************************************************
+------------------------------------------------------
 
     mysql> create database cat_app;
     Query OK, 1 row affected (0.00 sec)
@@ -564,12 +564,11 @@ and
 *********************************************************
 
 ### Read data
------------------------------------------
 
 - SELECT * FROM cats;
 - "*" means select all colums from the table 'cats'
 
-*************************************************************
+-----------------------------------------
 
     mysql> select * from cats
         -> ;
@@ -688,14 +687,12 @@ and
     7 rows in set (0.00 sec)
 
 *******************************************************
-*******************************************************
 
 ## Intro to WHERE
-------------------------------------------------------
 
 - The WHERE clause allows you to select data specifically.
 
-************************************************************
+------------------------------------------------------
 
     mysql> select * from cats where age=4;
     +--------+-------+---------+------+
@@ -775,14 +772,12 @@ and
     2 rows in set (0.00 sec)
 
 ***********************************************************
-***********************************************************
 
 ## Intro to ALIASES
-----------------------------------
 
 - Easier to read results
 
-*********************************************************
+----------------------------------------------------------
 
     mysql> select cat_id as id, name from cats;
     +----+----------------+
@@ -827,6 +822,8 @@ and
 *********************************************************************
 
 ### the UPDATE command
+
+-------------------------------------------------------
 
     mysql> update cats set breed='Shorthair' where breed='Tabby';
     Query OK, 2 rows affected (0.01 sec)
@@ -926,7 +923,6 @@ and
     +--------+----------------+-------------------+------+
     7 rows in set (0.00 sec)
 
-****************************************************************
 ****************************************************************
 
 ## Intro to DELETE/DESTROY
@@ -1194,7 +1190,6 @@ and
     Query OK, 0 rows affected (0.01 sec)
 
 **********************************************************
-**********************************************************
 
 ## STRING FUNCTIONS
 
@@ -1305,7 +1300,7 @@ and
 - CONCAT(column, 'text', anotherColumn, 'more text')
 - CONCAT(author_fname, ' ', author_lname)
 
-**********************************************************************************
+------------------------------------------------------------------
 
     mysql> select concat(author_fname, ' ', author_lname) from books;
     +-----------------------------------------+
@@ -1408,7 +1403,7 @@ and
 
 ### SUBSTRING
 
-***************************************************************************
+-------------------------------------------------------------------------
 
     mysql> SELECT SUBSTRING('Hello World', 1, 4);
     +--------------------------------+
@@ -1484,7 +1479,7 @@ and
 
 ### REPLACE
 
-******************************************************
+-------------------------------------------------------------------------
 
     mysql> select replace('Hello World', 'Hell', '%$#@');
     +----------------------------------------+
@@ -1579,7 +1574,7 @@ and
 
 ### REVERSE
 
-********************************************************
+-------------------------------------------------------------------------
 
     mysql> select reverse('Hello World');
     +------------------------+
@@ -1593,7 +1588,7 @@ and
 
 ### CHAR_LENGTH
 
-*****************************************************
+-------------------------------------------------------------------------
 
     mysql> select char_length('Hello World');
     +----------------------------+
@@ -1630,7 +1625,7 @@ and
 
 ### UPPER() & LOWER()
 
-***********************************************
+-------------------------------------------------------------------------
 
     mysql> select upper(title) from books;
     +-----------------------------------------------------+
@@ -1883,7 +1878,6 @@ and
     16 rows in set (0.00 sec)
 
 *****************************************************************
-*****************************************************************
 
 ## REFINING SELECTIONS
 
@@ -1901,6 +1895,7 @@ and
 *******************************************************************
 
 ### DISTINCT
+
 ------------------------------------------------------------
 
     mysql> select distinct author_lname from books;
@@ -2834,9 +2829,9 @@ and
     19 rows in set (0.00 sec)
 
 *************************************************************
-*************************************************************
 
 ### COUNT
+
 -------------------------
 
     mysql> select * from books;
@@ -3029,6 +3024,7 @@ and
 ***********************************************************
 
 ### GROUP BY
+
 ----------------------------
 
     mysql> select title, author_lname from books;
@@ -3266,6 +3262,7 @@ and
 ***********************************************************
 
 ### MIN and MAX BASICS
+
 --------------------------------------
 
     mysql> select min(released_year) from books;
@@ -3493,6 +3490,7 @@ GROUP   BY author_lname,
 ******************************************************
 
 ### SUM 
+
 -----------------------
 
     mysql> SELECT SUM(pages) FROM books;
@@ -3554,6 +3552,7 @@ GROUP   BY author_lname,
 ************************************************************
 
 ### AVG
+
 -------------------------
 
     mysql> SELECT AVG(released_year) FROM books;
@@ -3824,14 +3823,12 @@ GROUP   BY author_lname,
     16 rows in set (0.00 sec)
 
 ***************************************************************
-***************************************************************
 
 ## REVISITNG DATA TYPES
 
 ******************************************************************
 
-### CHAR & VARCHAR
-
+### CHAR & VARCHAR\
 
 - Difference between CHAR & VARCHAR is that CHAR is fixed
 - It is set to a specific number, so there cannot be more characters than what it is fixed to, and it will auto-fill the blank space.
@@ -3982,6 +3979,7 @@ GROUP   BY author_lname,
 *********************************************************
     
 ### Creating OUR DATE data
+
 ------------------------------------------
 
     mysql> CREATE DATABASE date_time_app;
@@ -4063,6 +4061,7 @@ GROUP   BY author_lname,
 *************************************************************
 
 ### FORMATTING DATES
+
 ----------------------------------
 
     mysql> SELECT name, birthdate FROM people;
@@ -4561,14 +4560,15 @@ GROUP   BY author_lname,
     );
     
 ***************************************************************************
-***************************************************************************
 
 ## LOGIC OPERATORS
 
 [MySQL Operators](https://dev.mysql.com/doc/refman/8.0/en/non-typed-operators.html)
+
 **********************************************************************************
 
 ### NOT EQUAL ( != )
+
 ----------------------------------
 
     mysql> SELECT title, released_year FROM books WHERE released_year = 2017;
