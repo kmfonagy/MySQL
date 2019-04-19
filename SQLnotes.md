@@ -3931,10 +3931,10 @@ GROUP   BY author_lname,
 
     mysql> CREATE TABLE thingies (price FLOAT);
     Query OK, 0 rows affected (0.02 sec)
-    
+
     mysql> INSERT INTO thingies(price) VALUES (88.45);
     Query OK, 1 row affected (0.00 sec)
-    
+
     mysql> SELECT * FROM thingies;
     +-------+
     | price |
@@ -3942,10 +3942,10 @@ GROUP   BY author_lname,
     | 88.45 |
     +-------+
     1 row in set (0.00 sec)
-    
+
     mysql> INSERT INTO thingies(price) VALUES (8877.45);
     Query OK, 1 row affected (0.02 sec)
-    
+
     mysql> SELECT * FROM thingies;
     +---------+
     | price   |
@@ -3954,10 +3954,10 @@ GROUP   BY author_lname,
     | 8877.45 |
     +---------+
     2 rows in set (0.00 sec)
-    
+
     mysql> INSERT INTO thingies(price) VALUES (8877665544.45);
     Query OK, 1 row affected (0.01 sec)
-    
+
     mysql> SELECT * FROM thingies;
     +------------+
     | price      |
@@ -3984,18 +3984,18 @@ GROUP   BY author_lname,
 
     mysql> CREATE DATABASE date_time_app;
     Query OK, 1 row affected (0.00 sec)
-    
+
     mysql> USE date_time_app;
     Database changed
     mysql> CREATE TABLE people( name VARCHAR(100), birthdate DATE, birthtime TIME, birthdt DATETIME );                             
     Query OK, 0 rows affected (0.02 sec)
-    
+
     mysql> INSERT INTO people (name, birthdate, birthtime, birthdt) VALUES ('Padma', '1983-11-11', '10:07:35', '1983-11-11 10:07:35');
     Query OK, 1 row affected (0.01 sec)
-    
+
     mysql> INSERT INTO people (name, birthdate, birthtime, birthdt) VALUES ('Larry', '1943-12-25', '04:10:42', '1943-12-25 04:10:42');
     Query OK, 1 row affected (0.01 sec)
-    
+
     mysql> SELECT * FROM people;
     +-------+------------+-----------+---------------------+
     | name  | birthdate  | birthtime | birthdt             |
@@ -4004,10 +4004,10 @@ GROUP   BY author_lname,
     | Larry | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
     +-------+------------+-----------+---------------------+
     2 rows in set (0.00 sec)
-    
+
     mysql> INSERT INTO people (name, birthdate, birthtime, birthdt) VALUES ('Toaster', '2017-04-21', '19:12:43', '2017-04-21 19:12:43');
     Query OK, 1 row affected (0.01 sec)
-    
+
     mysql> SELECT * FROM people;
     +---------+------------+-----------+---------------------+
     | name    | birthdate  | birthtime | birthdt             |
@@ -4017,7 +4017,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 | 19:12:43  | 2017-04-21 19:12:43 |
     +---------+------------+-----------+---------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT CURDATE(); *** gives_current_date ***
     +------------+
     | CURDATE()  |
@@ -4025,7 +4025,7 @@ GROUP   BY author_lname,
     | 2019-04-11 |
     +------------+
     1 row in set (0.00 sec)
-    
+
     mysql> SELECT CURTIME(); *** gives_current_time ***
     +-----------+
     | CURTIME() |
@@ -4033,7 +4033,7 @@ GROUP   BY author_lname,
     | 20:44:10  |
     +-----------+
     1 row in set (0.00 sec)
-    
+
     mysql> SELECT NOW(); *** gives_current_datetime ***
     +---------------------+
     | NOW()               |
@@ -4041,9 +4041,9 @@ GROUP   BY author_lname,
     | 2019-04-11 20:44:28 |
     +---------------------+
     1 row in set (0.00 sec)
-    
+
     mysql> INSERT INTO people (name, birthdate, birthtime, birthdt) VALUES ('Microwave', CURDATE(), CURTIME(), NOW());Query OK, 1 row affected (0.01 sec)
-    
+
     mysql> SELECT * FROM people;
     +-----------+------------+-----------+---------------------+
     | name      | birthdate  | birthtime | birthdt             |
@@ -4054,7 +4054,7 @@ GROUP   BY author_lname,
     | Microwave | 2019-04-11 | 20:48:53  | 2019-04-11 20:48:53 |
     +-----------+------------+-----------+---------------------+
     4 rows in set (0.01 sec)
-    
+
     mysql> DELETE FROM people WHERE name = 'Microwave';
     Query OK, 1 row affected (0.01 sec)
 
@@ -4073,7 +4073,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 |
     +---------+------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthdate, DAY(birthdate) FROM people;                                                                                    
     +---------+------------+----------------+
     | name    | birthdate  | DAY(birthdate) |
@@ -4083,7 +4083,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 |             21 |
     +---------+------------+----------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthdate, DAYNAME(birthdate) FROM people;                                                                                
     +---------+------------+--------------------+
     | name    | birthdate  | DAYNAME(birthdate) |
@@ -4093,7 +4093,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 | Friday             |
     +---------+------------+--------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthdate, DAYOFWEEK(birthdate) FROM people;                                                                              
     +---------+------------+----------------------+
     | name    | birthdate  | DAYOFWEEK(birthdate) |
@@ -4103,7 +4103,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 |                    6 |
     +---------+------------+----------------------+
     3 rows in set (0.01 sec)
-    
+
     mysql> SELECT name, birthdate, DAYOFYEAR(birthdate) FROM people;                                                                              
     +---------+------------+----------------------+
     | name    | birthdate  | DAYOFYEAR(birthdate) |
@@ -4113,7 +4113,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 |                  111 |
     +---------+------------+----------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthtime, DAYOFYEAR(birthtime) FROM people;                                                                              
     +---------+-----------+----------------------+
     | name    | birthtime | DAYOFYEAR(birthtime) |
@@ -4123,7 +4123,7 @@ GROUP   BY author_lname,
     | Toaster | 19:12:43  |                 NULL |
     +---------+-----------+----------------------+
     3 rows in set, 3 warnings (0.00 sec)
-    
+
     mysql> SELECT name, birthdt, DAYOFYEAR(birthdt) FROM people;                                                                                  
     +---------+---------------------+--------------------+
     | name    | birthdt             | DAYOFYEAR(birthdt) |
@@ -4133,7 +4133,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 19:12:43 |                111 |
     +---------+---------------------+--------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthdt, MONTH(birthdt) FROM people;                                                                                      
     +---------+---------------------+----------------+
     | name    | birthdt             | MONTH(birthdt) |
@@ -4143,7 +4143,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 19:12:43 |              4 |
     +---------+---------------------+----------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthdt, MONTHNAME(birthdt) FROM people;                                                                                  
     +---------+---------------------+--------------------+
     | name    | birthdt             | MONTHNAME(birthdt) |
@@ -4153,7 +4153,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 19:12:43 | April              |
     +---------+---------------------+--------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthtime, HOUR(birthtime) FROM people;                                                                                   
     +---------+-----------+-----------------+
     | name    | birthtime | HOUR(birthtime) |
@@ -4163,7 +4163,7 @@ GROUP   BY author_lname,
     | Toaster | 19:12:43  |              19 |
     +---------+-----------+-----------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthtime, MINUTE(birthtime) FROM people;                                                                                 
     +---------+-----------+-------------------+
     | name    | birthtime | MINUTE(birthtime) |
@@ -4173,7 +4173,7 @@ GROUP   BY author_lname,
     | Toaster | 19:12:43  |                12 |
     +---------+-----------+-------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT CONCAT(MONTHNAME(birthdt), ' ',  DAY(birthdt), ' ',  YEAR(birthdt)) FROM people;                                                
     +---------------------------------------------------------------------+
     | CONCAT(MONTHNAME(birthdt), ' ',  DAY(birthdt), ' ',  YEAR(birthdt)) |
@@ -4194,7 +4194,7 @@ GROUP   BY author_lname,
     | August 29th, 1982                      |
     +----------------------------------------+
     1 row in set (0.00 sec)
-    
+
     mysql> SELECT DATE_FORMAT('1982-08-29 23:47:18', 'On %M %D, %Y at %I:%ipm');
     +---------------------------------------------------------------+
     | DATE_FORMAT('1982-08-29 23:47:18', 'On %M %D, %Y at %I:%ipm') |
@@ -4202,7 +4202,7 @@ GROUP   BY author_lname,
     | On August 29th, 1982 at 11:47pm                               |
     +---------------------------------------------------------------+
     1 row in set (0.00 sec)
-    
+
     mysql> SELECT DATE_FORMAT(birthdt, '%W') FROM people;                                                                                         
     +----------------------------+
     | DATE_FORMAT(birthdt, '%W') |
@@ -4212,7 +4212,7 @@ GROUP   BY author_lname,
     | Friday                     |
     +----------------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT DATE_FORMAT(birthdt, 'Was born on a %W') FROM people;                                                                           
     +------------------------------------------+
     | DATE_FORMAT(birthdt, 'Was born on a %W') |
@@ -4222,7 +4222,7 @@ GROUP   BY author_lname,
     | Was born on a Friday                     |
     +------------------------------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name AS Name, DATE_FORMAT(birthdt, '%m/%d/%Y') AS "Born On" FROM people;
     +---------+------------+
     | Name    | Born On    |
@@ -4232,7 +4232,7 @@ GROUP   BY author_lname,
     | Toaster | 04/21/2017 |
     +---------+------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name AS Name, DATE_FORMAT(birthdt, '%m/%d/%Y') AS "Born On" FROM people ORDER BY birthdt;
     +---------+------------+
     | Name    | Born On    |
@@ -4261,7 +4261,7 @@ GROUP   BY author_lname,
     | Toaster | 2017-04-21 | 19:12:43  | 2017-04-21 19:12:43 |
     +---------+------------+-----------+---------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT DATEDIFF(NOW(), birthdate) FROM people;
     +----------------------------+
     | DATEDIFF(NOW(), birthdate) |
@@ -4271,7 +4271,7 @@ GROUP   BY author_lname,
     |                        720 |
     +----------------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT name, birthdate,DATEDIFF(NOW(), birthdate) FROM people;                                                                         
     +---------+------------+----------------------------+
     | name    | birthdate  | DATEDIFF(NOW(), birthdate) |
@@ -4294,7 +4294,7 @@ GROUP   BY author_lname,
     | 2017-04-21 19:12:43 |
     +---------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT birthdt, DATE_ADD(birthdt, INTERVAL 1 MONTH) FROM people;
     +---------------------+-------------------------------------+
     | birthdt             | DATE_ADD(birthdt, INTERVAL 1 MONTH) |
@@ -4304,7 +4304,7 @@ GROUP   BY author_lname,
     | 2017-04-21 19:12:43 | 2017-05-21 19:12:43                 |
     +---------------------+-------------------------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT birthdt, DATE_ADD(birthdt, INTERVAL 10 SECOND) FROM people;
     +---------------------+---------------------------------------+
     | birthdt             | DATE_ADD(birthdt, INTERVAL 10 SECOND) |
@@ -4314,7 +4314,7 @@ GROUP   BY author_lname,
     | 2017-04-21 19:12:43 | 2017-04-21 19:12:53                   |
     +---------------------+---------------------------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT birthdt, DATE_ADD(birthdt, INTERVAL 3 QUARTER) FROM people;                                                                     
     +---------------------+---------------------------------------+
     | birthdt             | DATE_ADD(birthdt, INTERVAL 3 QUARTER) |
@@ -4337,7 +4337,7 @@ GROUP   BY author_lname,
     | 2017-04-21 19:12:43 | 2017-05-21 19:12:43        |
     +---------------------+----------------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT birthdt, birthdt - INTERVAL 5 MONTH FROM people;                                                                                
     +---------------------+----------------------------+
     | birthdt             | birthdt - INTERVAL 5 MONTH |
@@ -4347,7 +4347,7 @@ GROUP   BY author_lname,
     | 2017-04-21 19:12:43 | 2016-11-21 19:12:43        |
     +---------------------+----------------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT birthdt, birthdt + INTERVAL 15 MONTH + INTERVAL 10 HOUR FROM people;                                                            
     +---------------------+------------------------------------------------+
     | birthdt             | birthdt + INTERVAL 15 MONTH + INTERVAL 10 HOUR |
@@ -4377,10 +4377,10 @@ GROUP   BY author_lname,
         ->  created_at TIMESTAMP DEFAULT NOW()
         -> );
     Query OK, 0 rows affected (0.02 sec)
-    
+
     mysql> INSERT INTO comments(content) VALUES ("LOL, I'm starting to get delirious from all this code");                                        
     Query OK, 1 row affected (0.01 sec)
-    
+
     mysql> SELECT * FROM comments ORDER BY created_at;
     +-------------------------------------------------------+---------------------+
     | content                                               | created_at          |
@@ -4389,7 +4389,7 @@ GROUP   BY author_lname,
     | OH PLEASE GOD, IS IT OVER YET?!?!?!                   | 2019-04-11 21:43:30 |
     +-------------------------------------------------------+---------------------+
     2 rows in set (0.01 sec)
-    
+
     mysql> SELECT * FROM comments ORDER BY created_at DESC;
     +-------------------------------------------------------+---------------------+
     | content                                               | created_at          |
@@ -4398,19 +4398,19 @@ GROUP   BY author_lname,
     | LOL, I'm starting to get delirious from all this code | 2019-04-11 21:38:46 |
     +-------------------------------------------------------+---------------------+
     2 rows in set (0.00 sec)
-    
+
     mysql> CREATE TABLE comments2(
         ->  content VARCHAR(100),
         ->  changed_at TIMESTAMP DEFAULT NOW() ON UPDATE CURRENT_TIMESTAMP
         -> );
     Query OK, 0 rows affected (0.01 sec)
-    
+
     mysql> INSERT INTO comments2 (content) VALUES ('dammit Sadie');
     Query OK, 1 row affected (0.01 sec)
-    
+
     mysql> INSERT INTO comments2 (content) VALUES ('Soooooo damn tired');
     Query OK, 1 row affected (0.02 sec)
-    
+
     mysql> SELECT * FROM comments2;
     +--------------------+---------------------+
     | content            | changed_at          |
@@ -4419,10 +4419,10 @@ GROUP   BY author_lname,
     | Soooooo damn tired | 2019-04-11 21:46:38 |
     +--------------------+---------------------+
     2 rows in set (0.00 sec)
-    
+
     mysql> INSERT INTO comments2 (content) VALUES ('Aaaaaarrrrrgh');
     Query OK, 1 row affected (0.01 sec)
-    
+
     mysql> SELECT * FROM comments2;
     +--------------------+---------------------+
     | content            | changed_at          |
@@ -4432,11 +4432,11 @@ GROUP   BY author_lname,
     | Aaaaaarrrrrgh      | 2019-04-11 21:47:18 |
     +--------------------+---------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> UPDATE comments2 SET content='GODDAMMIT SADIE!!!' WHERE content='dammit Sadie';
     Query OK, 1 row affected (0.01 sec)
     Rows matched: 1  Changed: 1  Warnings: 0
-    
+
     mysql> SELECT * FROM comments2;
     +--------------------+---------------------+
     | content            | changed_at          |
@@ -4446,7 +4446,7 @@ GROUP   BY author_lname,
     | Aaaaaarrrrrgh      | 2019-04-11 21:47:18 |
     +--------------------+---------------------+
     3 rows in set (0.00 sec)
-    
+
     mysql> SELECT * FROM comments2 ORDER BY changed_at;
     +--------------------+---------------------+
     | content            | changed_at          |
@@ -4462,11 +4462,14 @@ GROUP   BY author_lname,
 ************************************************
 
 - What is a good use case for CHAR?
+-----------------------------------------
 
 
     - For situations where you know the text will have a fixed length
-    
+
+
 - CREATE TABLE inventory(item_name _________, price __________, quantity _______);
+-----------------------------------------------------------
 
 
     mysql> CREATE TABLE inventory(
@@ -4474,14 +4477,18 @@ GROUP   BY author_lname,
         price DECIMAL(8,2),
         quantity INT
     );
-        
+
+
 - Dfference between DATETIME and TIMESTAMP?
+-----------------------------------------------
 
 
     - DATETIME does not have a specific range, it is best for logging things like birthdate
     - TIMESTAMP is limited in it's range, and best used for documenting creation & modification of content
-    
+
+
 - Print out just the current time
+----------------------------------
 
 
     mysql> SELECT CURTIME();
@@ -4491,8 +4498,10 @@ GROUP   BY author_lname,
     | 22:04:14  |
     +-----------+
     1 row in set (0.00 sec)
-        
+
+
 - Print out just the current date
+---------------------------------------------------
 
 
     mysql> SELECT CURDATE();
@@ -4502,8 +4511,10 @@ GROUP   BY author_lname,
     | 2019-04-11 |
     +------------+
     1 row in set (0.00 sec)
-    
+
+
 - Print out the current # day of the week
+-------------------------------------------
 
 
     SELECT DATE_FORMAT('2019-04-11', '%w');
@@ -4513,8 +4524,10 @@ GROUP   BY author_lname,
     | 4                               |
     +---------------------------------+
     1 row in set (0.00 sec)
-    
+
+
 - Print out the current name day of the week
+--------------------------------------------------
 
 
     mysql> SELECT DATE_FORMAT('2019-04-11', '%W');
@@ -4526,6 +4539,7 @@ GROUP   BY author_lname,
     1 row in set (0.00 sec)
     
 - Print out the current day & time using mm/dd/yyyy
+------------------------------------------------
 
 
     mysql> SELECT DATE_FORMAT(CURDATE(), '%m/%d/%Y');                                                                                            
@@ -4536,7 +4550,9 @@ GROUP   BY author_lname,
     +------------------------------------+
     1 row in set (0.01 sec)
 
+
 - Print out the current day & time using format: January 2nd at 3:15, April 1st at 10:18
+-------------------------------------------------
 
 
     mysql> SELECT DATE_FORMAT(CURDATE(), '%M %D at %I:%i');
@@ -4546,11 +4562,13 @@ GROUP   BY author_lname,
     | April 11th at 10:10                      |
     +------------------------------------------+
     1 row in set (0.00 sec)
-    
+
+
 - Create a tweets table that stores:
     - The tweet content
     - A Username
     - Time it was created
+-------------------------------------------------
 
 
     CREATE TABLE tweets(
@@ -4578,10 +4596,796 @@ GROUP   BY author_lname,
     | Lincoln In The Bardo |          2017 |
     +----------------------+---------------+
     1 row in set (0.00 sec)
+
+    mysql> SELECT title FROM books WHERE released_year != 2017;                                                                                     
+    +-----------------------------------------------------+
+    | title                                               |
+    +-----------------------------------------------------+
+    | The Namesake                                        |
+    | Norse Mythology                                     |
+    | American Gods                                       |
+    | Interpreter of Maladies                             |
+    | A Hologram for the King: A Novel                    |
+    | The Circle                                          |
+    | The Amazing Adventures of Kavalier & Clay           |
+    | Just Kids                                           |
+    | A Heartbreaking Work of Staggering Genius           |
+    | Coraline                                            |
+    | What We Talk About When We Talk About Love: Stories |
+    | Where I'm Calling From: Selected Stories            |
+    | White Noise                                         |
+    | Cannery Row                                         |
+    | Oblivion: Stories                                   |
+    | Consider the Lobster                                |
+    | 10% Happier                                         |
+    | fake_book                                           |
+    +-----------------------------------------------------+
+    18 rows in set (0.00 sec)
+
+    mysql> SELECT title, author_lname FROM books;                                                                                           
+    +-----------------------------------------------------+----------------+
+    | title                                               | author_lname   |
+    +-----------------------------------------------------+----------------+
+    | The Namesake                                        | Lahiri         |
+    | Norse Mythology                                     | Gaiman         |
+    | American Gods                                       | Gaiman         |
+    | Interpreter of Maladies                             | Lahiri         |
+    | A Hologram for the King: A Novel                    | Eggers         |
+    | The Circle                                          | Eggers         |
+    | The Amazing Adventures of Kavalier & Clay           | Chabon         |
+    | Just Kids                                           | Smith          |
+    | A Heartbreaking Work of Staggering Genius           | Eggers         |
+    | Coraline                                            | Gaiman         |
+    | What We Talk About When We Talk About Love: Stories | Carver         |
+    | Where I'm Calling From: Selected Stories            | Carver         |
+    | White Noise                                         | DeLillo        |
+    | Cannery Row                                         | Steinbeck      |
+    | Oblivion: Stories                                   | Foster Wallace |
+    | Consider the Lobster                                | Foster Wallace |
+    | 10% Happier                                         | Harris         |
+    | fake_book                                           | Harris         |
+    | Lincoln In The Bardo                                | Saunders       |
+    +-----------------------------------------------------+----------------+
+    19 rows in set (0.00 sec)
+
+    mysql> SELECT title, author_lname FROM books;                                                                                           
+    +-----------------------------------------------------+----------------+
+    | title                                               | author_lname   |
+    +-----------------------------------------------------+----------------+
+    | The Namesake                                        | Lahiri         |
+    | Norse Mythology                                     | Gaiman         |
+    | American Gods                                       | Gaiman         |
+    | Interpreter of Maladies                             | Lahiri         |
+    | A Hologram for the King: A Novel                    | Eggers         |
+    | The Circle                                          | Eggers         |
+    | The Amazing Adventures of Kavalier & Clay           | Chabon         |
+    | Just Kids                                           | Smith          |
+    | A Heartbreaking Work of Staggering Genius           | Eggers         |
+    | Coraline                                            | Gaiman         |
+    | What We Talk About When We Talk About Love: Stories | Carver         |
+    | Where I'm Calling From: Selected Stories            | Carver         |
+    | White Noise                                         | DeLillo        |
+    | Cannery Row                                         | Steinbeck      |
+    | Oblivion: Stories                                   | Foster Wallace |
+    | Consider the Lobster                                | Foster Wallace |
+    | 10% Happier                                         | Harris         |
+    | fake_book                                           | Harris         |
+    | Lincoln In The Bardo                                | Saunders       |
+    +-----------------------------------------------------+----------------+
+    19 rows in set (0.00 sec)
+
+    mysql> SELECT title, author_lname FROM books WHERE author_lname = 'Harris';
+    +-------------+--------------+
+    | title       | author_lname |
+    +-------------+--------------+
+    | 10% Happier | Harris       |
+    | fake_book   | Harris       |
+    +-------------+--------------+
+    2 rows in set (0.00 sec)
+
+    mysql> SELECT title, author_lname FROM books WHERE author_lname != 'Harris';                                                                    
+    +-----------------------------------------------------+----------------+
+    | title                                               | author_lname   |
+    +-----------------------------------------------------+----------------+
+    | The Namesake                                        | Lahiri         |
+    | Norse Mythology                                     | Gaiman         |
+    | American Gods                                       | Gaiman         |
+    | Interpreter of Maladies                             | Lahiri         |
+    | A Hologram for the King: A Novel                    | Eggers         |
+    | The Circle                                          | Eggers         |
+    | The Amazing Adventures of Kavalier & Clay           | Chabon         |
+    | Just Kids                                           | Smith          |
+    | A Heartbreaking Work of Staggering Genius           | Eggers         |
+    | Coraline                                            | Gaiman         |
+    | What We Talk About When We Talk About Love: Stories | Carver         |
+    | Where I'm Calling From: Selected Stories            | Carver         |
+    | White Noise                                         | DeLillo        |
+    | Cannery Row                                         | Steinbeck      |
+    | Oblivion: Stories                                   | Foster Wallace |
+    | Consider the Lobster                                | Foster Wallace |
+    | Lincoln In The Bardo                                | Saunders       |
+    +-----------------------------------------------------+----------------+
+    17 rows in set (0.00 sec)
+
+****************************************************************
+
+### NOT LIKE
+
+[Not Like](https://dev.mysql.com/doc/refman/8.0/en/string-comparison-functions.html#operator_not-like)
+
+-------------------------------------------------------------
+
+    mysql> SELECT title FROM books WHERE title LIKE 'W%';
+    +-----------------------------------------------------+
+    | title                                               |
+    +-----------------------------------------------------+
+    | What We Talk About When We Talk About Love: Stories |
+    | Where I'm Calling From: Selected Stories            |
+    | White Noise                                         |
+    +-----------------------------------------------------+
+    3 rows in set (0.00 sec)
+
+    mysql> SELECT title FROM books WHERE title LIKE '%W%';
+    +-----------------------------------------------------+
+    | title                                               |
+    +-----------------------------------------------------+
+    | A Heartbreaking Work of Staggering Genius           |
+    | What We Talk About When We Talk About Love: Stories |
+    | Where I'm Calling From: Selected Stories            |
+    | White Noise                                         |
+    | Cannery Row                                         |
+    +-----------------------------------------------------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT title FROM books WHERE title NOT LIKE 'W%';                                                                                       
+    +-------------------------------------------+
+    | title                                     |
+    +-------------------------------------------+
+    | The Namesake                              |
+    | Norse Mythology                           |
+    | American Gods                             |
+    | Interpreter of Maladies                   |
+    | A Hologram for the King: A Novel          |
+    | The Circle                                |
+    | The Amazing Adventures of Kavalier & Clay |
+    | Just Kids                                 |
+    | A Heartbreaking Work of Staggering Genius |
+    | Coraline                                  |
+    | Cannery Row                               |
+    | Oblivion: Stories                         |
+    | Consider the Lobster                      |
+    | 10% Happier                               |
+    | fake_book                                 |
+    | Lincoln In The Bardo                      |
+    +-------------------------------------------+
+    16 rows in set (0.00 sec)
+
+    mysql> SELECT title FROM books WHERE title NOT LIKE '%W%';                                                                                      
+    +-------------------------------------------+
+    | title                                     |
+    +-------------------------------------------+
+    | The Namesake                              |
+    | Norse Mythology                           |
+    | American Gods                             |
+    | Interpreter of Maladies                   |
+    | A Hologram for the King: A Novel          |
+    | The Circle                                |
+    | The Amazing Adventures of Kavalier & Clay |
+    | Just Kids                                 |
+    | Coraline                                  |
+    | Oblivion: Stories                         |
+    | Consider the Lobster                      |
+    | 10% Happier                               |
+    | fake_book                                 |
+    | Lincoln In The Bardo                      |
+    +-------------------------------------------+
+    14 rows in set (0.00 sec)
+
+********************************************
+
+### GREATER THAN
+
+- [Greater Than (>)](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_greater-than)
+- [Greater Than or Equal To (>=)](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_greater-than-or-equal)
+
+-----------------------------------------
+
+    mysql> SELECT title, released_year FROM books ORDER BY released_year;
+    +-----------------------------------------------------+---------------+
+    | title                                               | released_year |
+    +-----------------------------------------------------+---------------+
+    | Cannery Row                                         |          1945 |
+    | What We Talk About When We Talk About Love: Stories |          1981 |
+    | White Noise                                         |          1985 |
+    | Where I'm Calling From: Selected Stories            |          1989 |
+    | Interpreter of Maladies                             |          1996 |
+    | The Amazing Adventures of Kavalier & Clay           |          2000 |
+    | American Gods                                       |          2001 |
+    | fake_book                                           |          2001 |
+    | A Heartbreaking Work of Staggering Genius           |          2001 |
+    | The Namesake                                        |          2003 |
+    | Coraline                                            |          2003 |
+    | Oblivion: Stories                                   |          2004 |
+    | Consider the Lobster                                |          2005 |
+    | Just Kids                                           |          2010 |
+    | A Hologram for the King: A Novel                    |          2012 |
+    | The Circle                                          |          2013 |
+    | 10% Happier                                         |          2014 |
+    | Norse Mythology                                     |          2016 |
+    | Lincoln In The Bardo                                |          2017 |
+    +-----------------------------------------------------+---------------+
+    19 rows in set (0.00 sec)
+
+    mysql> SELECT title, released_year FROM books WHERE released_year > 2000 ORDER BY released_year;                                               
+    +-------------------------------------------+---------------+
+    | title                                     | released_year |
+    +-------------------------------------------+---------------+
+    | A Heartbreaking Work of Staggering Genius |          2001 |
+    | fake_book                                 |          2001 |
+    | American Gods                             |          2001 |
+    | Coraline                                  |          2003 |
+    | The Namesake                              |          2003 |
+    | Oblivion: Stories                         |          2004 |
+    | Consider the Lobster                      |          2005 |
+    | Just Kids                                 |          2010 |
+    | A Hologram for the King: A Novel          |          2012 |
+    | The Circle                                |          2013 |
+    | 10% Happier                               |          2014 |
+    | Norse Mythology                           |          2016 |
+    | Lincoln In The Bardo                      |          2017 |
+    +-------------------------------------------+---------------+
+    13 rows in set (0.00 sec)
+
+    mysql> SELECT title, released_year FROM books WHERE released_year >= 2000 ORDER BY released_year;                                               
+    +-------------------------------------------+---------------+
+    | title                                     | released_year |
+    +-------------------------------------------+---------------+
+    | The Amazing Adventures of Kavalier & Clay |          2000 |
+    | A Heartbreaking Work of Staggering Genius |          2001 |
+    | fake_book                                 |          2001 |
+    | American Gods                             |          2001 |
+    | Coraline                                  |          2003 |
+    | The Namesake                              |          2003 |
+    | Oblivion: Stories                         |          2004 |
+    | Consider the Lobster                      |          2005 |
+    | Just Kids                                 |          2010 |
+    | A Hologram for the King: A Novel          |          2012 |
+    | The Circle                                |          2013 |
+    | 10% Happier                               |          2014 |
+    | Norse Mythology                           |          2016 |
+    | Lincoln In The Bardo                      |          2017 |
+    +-------------------------------------------+---------------+
+    14 rows in set (0.00 sec)
+
+    mysql> SELECT title, stock_quantity FROM books WHERE stock_quantity >= 100;
+    +-------------------------------------------+----------------+
+    | title                                     | stock_quantity |
+    +-------------------------------------------+----------------+
+    | A Hologram for the King: A Novel          |            154 |
+    | A Heartbreaking Work of Staggering Genius |            104 |
+    | Coraline                                  |            100 |
+    | Oblivion: Stories                         |            172 |
+    | fake_book                                 |            287 |
+    | Lincoln In The Bardo                      |           1000 |
+    +-------------------------------------------+----------------+
+    6 rows in set (0.00 sec)
+
+
+- With > & >= it's looking for a boolean value (True or False value).
+
+
+    mysql> SELECT 99 > 1;
+    +--------+
+    | 99 > 1 |
+    +--------+
+    |      1 |
+    +--------+
+    1 row in set (0.00 sec)
+
+    mysql> SELECT 99 > 567;
+    +----------+
+    | 99 > 567 |
+    +----------+
+    |        0 |
+    +----------+
+    1 row in set (0.00 sec)
+
+**************************************************************
+
+### LESS THAN
+
+[Less Than (<)](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_less-than)
+[Less Than or Equal To (<=)](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_less-than-or-equal)
+
+------------------------------------------------------------
+
+    mysql> SELECT title, released_year FROM books WHERE released_year < 2000 ORDER BY released_year;                                                
+    +-----------------------------------------------------+---------------+
+    | title                                               | released_year |
+    +-----------------------------------------------------+---------------+
+    | Cannery Row                                         |          1945 |
+    | What We Talk About When We Talk About Love: Stories |          1981 |
+    | White Noise                                         |          1985 |
+    | Where I'm Calling From: Selected Stories            |          1989 |
+    | Interpreter of Maladies                             |          1996 |
+    +-----------------------------------------------------+---------------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT title, released_year FROM books WHERE released_year <= 2000 ORDER BY released_year;                                               
+    +-----------------------------------------------------+---------------+
+    | title                                               | released_year |
+    +-----------------------------------------------------+---------------+
+    | Cannery Row                                         |          1945 |
+    | What We Talk About When We Talk About Love: Stories |          1981 |
+    | White Noise                                         |          1985 |
+    | Where I'm Calling From: Selected Stories            |          1989 |
+    | Interpreter of Maladies                             |          1996 |
+    | The Amazing Adventures of Kavalier & Clay           |          2000 |
+    +-----------------------------------------------------+---------------+
+    6 rows in set (0.00 sec)
+
+**************************************************************
+
+### Logical AND
+
+- [Logical And (&&)](https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_and)
+- Can be typed as 'AND' or '&&'
+
+-------------------------------------------------------
+
+    mysql> SELECT * FROM books WHERE author_lname='Eggers';
+    +---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+    | book_id | title                                     | author_fname | author_lname | released_year | stock_quantity | pages |
+    +---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+    |       5 | A Hologram for the King: A Novel          | Dave         | Eggers       |          2012 |            154 |   352 |
+    |       6 | The Circle                                | Dave         | Eggers       |          2013 |             26 |   504 |
+    |       9 | A Heartbreaking Work of Staggering Genius | Dave         | Eggers       |          2001 |            104 |   437 |
+    +---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+    3 rows in set (0.00 sec)
+
+    mysql> SELECT * FROM books WHERE released_year>2010;
+    +---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+    | book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
+    +---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+    |       2 | Norse Mythology                  | Neil         | Gaiman       |          2016 |             43 |   304 |
+    |       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
+    |       6 | The Circle                       | Dave         | Eggers       |          2013 |             26 |   504 |
+    |      17 | 10% Happier                      | Dan          | Harris       |          2014 |             29 |   256 |
+    |      19 | Lincoln In The Bardo             | George       | Saunders     |          2017 |           1000 |   367 |
+    +---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT * FROM books WHERE author_lname = 'Eggers' AND released_year > 2010;
+    +---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+    | book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
+    +---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+    |       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
+    |       6 | The Circle                       | Dave         | Eggers       |          2013 |             26 |   504 |
+    +---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+    2 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, author_lname AS Author, released_year AS Year FROM books WHERE author_lname = 'Eggers' && released_year > 2010;
+    +----------------------------------+--------+------+
+    | Title                            | Author | Year |
+    +----------------------------------+--------+------+
+    | A Hologram for the King: A Novel | Eggers | 2012 |
+    | The Circle                       | Eggers | 2013 |
+    +----------------------------------+--------+------+
+    2 rows in set (0.00 sec)
+
+    mysql> SELECT title AS TItle, author_lname AS Author, released_year AS Year FROM books WHERE author_lname = 'Eggers' && released_year > 2010 AND title LIKE '%novel%';
+    +----------------------------------+--------+------+
+    | TItle                            | Author | Year |
+    +----------------------------------+--------+------+
+    | A Hologram for the King: A Novel | Eggers | 2012 |
+    +----------------------------------+--------+------+
+    1 row in set (0.00 sec)
     
-    mysql> 
+- Not limited to two conditions
+
+*************************************************************
+
+### Logical OR
+
+- [Logical Or (||)](https://dev.mysql.com/doc/refman/8.0/en/logical-operators.html#operator_or)
+- Can be typed as 'OR' or '||'
+
+------------------------------------------------------------
+
+    mysql> SELECT title AS Title, author_lname AS Author, released_year AS Year FROM books WHERE author_lname = 'Eggers' || released_year > 2010;   +-------------------------------------------+----------+------+
+    | Title                                     | Author   | Year |
+    +-------------------------------------------+----------+------+
+    | Norse Mythology                           | Gaiman   | 2016 |
+    | A Hologram for the King: A Novel          | Eggers   | 2012 |
+    | The Circle                                | Eggers   | 2013 |
+    | A Heartbreaking Work of Staggering Genius | Eggers   | 2001 |
+    | 10% Happier                               | Harris   | 2014 |
+    | Lincoln In The Bardo                      | Saunders | 2017 |
+    +-------------------------------------------+----------+------+
+    6 rows in set (0.01 sec)
+    
+----------------------------------------
+- With 'Condition 1 && Condition 2': Both sides must be equal to be true.
+- With 'Condition 1 || Condition 2': Only one side needs to be true for the whole thing to be true.
+----------------------------------------
 
 
+    mysql> SELECT title AS Title, author_lname AS Author, released_year AS Year, stock_quantity AS Stock FROM books WHERE author_lname = 'Eggers' || released_year > 2010 OR stock_quantity > 100;                                                                                                 
+    +-------------------------------------------+----------------+------+-------+
+    | Title                                     | Author         | Year | Stock |
+    +-------------------------------------------+----------------+------+-------+
+    | Norse Mythology                           | Gaiman         | 2016 |    43 |
+    | A Hologram for the King: A Novel          | Eggers         | 2012 |   154 |
+    | The Circle                                | Eggers         | 2013 |    26 |
+    | A Heartbreaking Work of Staggering Genius | Eggers         | 2001 |   104 |
+    | Oblivion: Stories                         | Foster Wallace | 2004 |   172 |
+    | 10% Happier                               | Harris         | 2014 |    29 |
+    | fake_book                                 | Harris         | 2001 |   287 |
+    | Lincoln In The Bardo                      | Saunders       | 2017 |  1000 |
+    +-------------------------------------------+----------------+------+-------+
+    8 rows in set (0.00 sec)
 
 
+-------------------------------
+- Again, not matter how many conditions are involved, only one has to be true for the entire OR query to be true.
+
+**************************************************************
+
+### BETWEEN & NOT
+
+- [Between...AND...](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_between)
+- [Not Between...AND...](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#operator_not-between)
+
+------------------------------------------------------------
+
+    mysql> SELECT title AS Title, released_year AS Year FROM books;
+    +-----------------------------------------------------+------+
+    | Title                                               | Year |
+    +-----------------------------------------------------+------+
+    | The Namesake                                        | 2003 |
+    | Norse Mythology                                     | 2016 |
+    | American Gods                                       | 2001 |
+    | Interpreter of Maladies                             | 1996 |
+    | A Hologram for the King: A Novel                    | 2012 |
+    | The Circle                                          | 2013 |
+    | The Amazing Adventures of Kavalier & Clay           | 2000 |
+    | Just Kids                                           | 2010 |
+    | A Heartbreaking Work of Staggering Genius           | 2001 |
+    | Coraline                                            | 2003 |
+    | What We Talk About When We Talk About Love: Stories | 1981 |
+    | Where I'm Calling From: Selected Stories            | 1989 |
+    | White Noise                                         | 1985 |
+    | Cannery Row                                         | 1945 |
+    | Oblivion: Stories                                   | 2004 |
+    | Consider the Lobster                                | 2005 |
+    | 10% Happier                                         | 2014 |
+    | fake_book                                           | 2001 |
+    | Lincoln In The Bardo                                | 2017 |
+    +-----------------------------------------------------+------+
+    19 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, released_year AS Year FROM books WHERE released_year >= 2004 && released_year <= 2015 ORDER BY released_year;
+    +----------------------------------+------+
+    | Title                            | Year |
+    +----------------------------------+------+
+    | Oblivion: Stories                | 2004 |
+    | Consider the Lobster             | 2005 |
+    | Just Kids                        | 2010 |
+    | A Hologram for the King: A Novel | 2012 |
+    | The Circle                       | 2013 |
+    | 10% Happier                      | 2014 |
+    +----------------------------------+------+
+    6 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, released_year AS Year FROM books WHERE released_year BETWEEN 2004 AND  2015 ORDER BY released_year;               
+    +----------------------------------+------+
+    | Title                            | Year |
+    +----------------------------------+------+
+    | Oblivion: Stories                | 2004 |
+    | Consider the Lobster             | 2005 |
+    | Just Kids                        | 2010 |
+    | A Hologram for the King: A Novel | 2012 |
+    | The Circle                       | 2013 |
+    | 10% Happier                      | 2014 |
+    +----------------------------------+------+
+    6 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, released_year AS Year FROM books WHERE released_year NOT BETWEEN 2004 AND 2015 ORDER BY released_year;            
+    +-----------------------------------------------------+------+
+    | Title                                               | Year |
+    +-----------------------------------------------------+------+
+    | Cannery Row                                         | 1945 |
+    | What We Talk About When We Talk About Love: Stories | 1981 |
+    | White Noise                                         | 1985 |
+    | Where I'm Calling From: Selected Stories            | 1989 |
+    | Interpreter of Maladies                             | 1996 |
+    | The Amazing Adventures of Kavalier & Clay           | 2000 |
+    | A Heartbreaking Work of Staggering Genius           | 2001 |
+    | American Gods                                       | 2001 |
+    | fake_book                                           | 2001 |
+    | The Namesake                                        | 2003 |
+    | Coraline                                            | 2003 |
+    | Norse Mythology                                     | 2016 |
+    | Lincoln In The Bardo                                | 2017 |
+    +-----------------------------------------------------+------+
+    13 rows in set (0.00 sec)
+
+---------------------------------------
+
+- [CAST()](https://dev.mysql.com/doc/refman/8.0/en/cast-functions.html#function_cast)
+
+---------------------------------------
+
+    mysql> SELECT CAST('2017-05-02' AS DATETIME);                                                                                                   
+    +--------------------------------+
+    | CAST('2017-05-02' AS DATETIME) |
+    +--------------------------------+
+    | 2017-05-02 00:00:00            |
+    +--------------------------------+
+    1 row in set (0.00 sec)
+
+    mysql> use date_time_app;
+    Reading table information for completion of table and column names
+    You can turn off this feature to get a quicker startup with -A
+
+    Database changed
+    mysql> SELECT * FROM people;
+    +---------+------------+-----------+---------------------+
+    | name    | birthdate  | birthtime | birthdt             |
+    +---------+------------+-----------+---------------------+
+    | Padma   | 1983-11-11 | 10:07:35  | 1983-11-11 10:07:35 |
+    | Larry   | 1943-12-25 | 04:10:42  | 1943-12-25 04:10:42 |
+    | Toaster | 2017-04-21 | 19:12:43  | 2017-04-21 19:12:43 |
+    +---------+------------+-----------+---------------------+
+    3 rows in set (0.00 sec)
+
+    mysql> SELECT name AS Name, birthdt AS Birthdate FROM people WHERE birthdt BETWEEN '1980-01-01' AND '2000-01-01';
+    +-------+---------------------+
+    | Name  | Birthdate           |
+    +-------+---------------------+
+    | Padma | 1983-11-11 10:07:35 |
+    +-------+---------------------+
+    1 row in set (0.00 sec)
+
+    mysql> SELECT name AS Name, birthdt AS Birthdate FROM people WHERE birthdt BETWEEN CAST('1980-01-01' AS DATETIME) AND CAST('2000-01-01' AS DATETIME);
+    +-------+---------------------+
+    | Name  | Birthdate           |
+    +-------+---------------------+
+    | Padma | 1983-11-11 10:07:35 |
+    +-------+---------------------+
+    1 row in set (0.00 sec)
+
+- The later is the appropriate way to look it up, even though MySQL is smart enough to understand what is being requested
+
+*****************************************************
+
+### IN and NOT IN
+
+- [IN](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#function_in)
+- [NOT IN](https://dev.mysql.com/doc/refman/8.0/en/comparison-operators.html#function_not-in)
+
+---------------------------------------------------
+
+    mysql> SELECT title AS Title, author_lname AS Author FROM books WHERE author_lname='Carver' || author_lname='LAHIRI' || author_lname='smith';
+    +-----------------------------------------------------+--------+
+    | Title                                               | Author |
+    +-----------------------------------------------------+--------+
+    | The Namesake                                        | Lahiri |
+    | Interpreter of Maladies                             | Lahiri |
+    | Just Kids                                           | Smith  |
+    | What We Talk About When We Talk About Love: Stories | Carver |
+    | Where I'm Calling From: Selected Stories            | Carver |
+    +-----------------------------------------------------+--------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, author_lname AS Author FROM books WHERE author_lname IN ('Carver', 'LAHIRI', 'smith');
+    +-----------------------------------------------------+--------+
+    | Title                                               | Author |
+    +-----------------------------------------------------+--------+
+    | The Namesake                                        | Lahiri |
+    | Interpreter of Maladies                             | Lahiri |
+    | Just Kids                                           | Smith  |
+    | What We Talk About When We Talk About Love: Stories | Carver |
+    | Where I'm Calling From: Selected Stories            | Carver |
+    +-----------------------------------------------------+--------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, released_year AS Year FROM books WHERE released_year IN (2017, 1985);
+    +----------------------+------+
+    | Title                | Year |
+    +----------------------+------+
+    | White Noise          | 1985 |
+    | Lincoln In The Bardo | 2017 |
+    +----------------------+------+
+    2 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, author_lname AS Author FROM books WHERE author_lname NOT IN ('Carver', 'LAHIRI', 'smith');                        
+    +-------------------------------------------+----------------+
+    | Title                                     | Author         |
+    +-------------------------------------------+----------------+
+    | Norse Mythology                           | Gaiman         |
+    | American Gods                             | Gaiman         |
+    | A Hologram for the King: A Novel          | Eggers         |
+    | The Circle                                | Eggers         |
+    | The Amazing Adventures of Kavalier & Clay | Chabon         |
+    | A Heartbreaking Work of Staggering Genius | Eggers         |
+    | Coraline                                  | Gaiman         |
+    | White Noise                               | DeLillo        |
+    | Cannery Row                               | Steinbeck      |
+    | Oblivion: Stories                         | Foster Wallace |
+    | Consider the Lobster                      | Foster Wallace |
+    | 10% Happier                               | Harris         |
+    | fake_book                                 | Harris         |
+    | Lincoln In The Bardo                      | Saunders       |
+    +-------------------------------------------+----------------+
+    14 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, released_year AS Year FROM books WHERE released_year NOT IN (2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018) ORDER BY released_year;
+    +-----------------------------------------------------+------+
+    | Title                                               | Year |
+    +-----------------------------------------------------+------+
+    | Cannery Row                                         | 1945 |
+    | What We Talk About When We Talk About Love: Stories | 1981 |
+    | White Noise                                         | 1985 |
+    | Where I'm Calling From: Selected Stories            | 1989 |
+    | Interpreter of Maladies                             | 1996 |
+    | American Gods                                       | 2001 |
+    | fake_book                                           | 2001 |
+    | A Heartbreaking Work of Staggering Genius           | 2001 |
+    | The Namesake                                        | 2003 |
+    | Coraline                                            | 2003 |
+    | Consider the Lobster                                | 2005 |
+    | The Circle                                          | 2013 |
+    | Lincoln In The Bardo                                | 2017 |
+    +-----------------------------------------------------+------+
+    13 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, released_year AS Year FROM books WHERE released_year >= 2000 && released_year NOT IN (2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016, 2018) ORDER BY released_year;                                                                                         
+    +-------------------------------------------+------+
+    | Title                                     | Year |
+    +-------------------------------------------+------+
+    | American Gods                             | 2001 |
+    | A Heartbreaking Work of Staggering Genius | 2001 |
+    | fake_book                                 | 2001 |
+    | The Namesake                              | 2003 |
+    | Coraline                                  | 2003 |
+    | Consider the Lobster                      | 2005 |
+    | The Circle                                | 2013 |
+    | Lincoln In The Bardo                      | 2017 |
+    +-------------------------------------------+------+
+    8 rows in set (0.00 sec)
+
+    mysql> SELECT title AS Title, released_year AS Year FROM books WHERE released_year >= 2000 && released_year % 2 != 0 ORDER BY released_year;
+    +-------------------------------------------+------+
+    | Title                                     | Year |
+    +-------------------------------------------+------+
+    | American Gods                             | 2001 |
+    | A Heartbreaking Work of Staggering Genius | 2001 |
+    | fake_book                                 | 2001 |
+    | The Namesake                              | 2003 |
+    | Coraline                                  | 2003 |
+    | Consider the Lobster                      | 2005 |
+    | The Circle                                | 2013 |
+    | Lincoln In The Bardo                      | 2017 |
+    +-------------------------------------------+------+
+    8 rows in set (0.01 sec)
+
+********************************************************
+
+### CASE statement
+
+- [CASE Syntax](https://dev.mysql.com/doc/refman/5.7/en/case.html)
+
+----------------------------------------------------
+
+    mysql> SELECT title AS Title, released_year AS Year, CASE WHEN released_year >= 2000 THEN 'Modern Lit' ELSE '20th Century Lit' END AS Era FROM books;
+    +-----------------------------------------------------+------+------------------+
+    | Title                                               | Year | Era              |
+    +-----------------------------------------------------+------+------------------+
+    | The Namesake                                        | 2003 | Modern Lit       |
+    | Norse Mythology                                     | 2016 | Modern Lit       |
+    | American Gods                                       | 2001 | Modern Lit       |
+    | Interpreter of Maladies                             | 1996 | 20th Century Lit |
+    | A Hologram for the King: A Novel                    | 2012 | Modern Lit       |
+    | The Circle                                          | 2013 | Modern Lit       |
+    | The Amazing Adventures of Kavalier & Clay           | 2000 | Modern Lit       |
+    | Just Kids                                           | 2010 | Modern Lit       |
+    | A Heartbreaking Work of Staggering Genius           | 2001 | Modern Lit       |
+    | Coraline                                            | 2003 | Modern Lit       |
+    | What We Talk About When We Talk About Love: Stories | 1981 | 20th Century Lit |
+    | Where I'm Calling From: Selected Stories            | 1989 | 20th Century Lit |
+    | White Noise                                         | 1985 | 20th Century Lit |
+    | Cannery Row                                         | 1945 | 20th Century Lit |
+    | Oblivion: Stories                                   | 2004 | Modern Lit       |
+    | Consider the Lobster                                | 2005 | Modern Lit       |
+    | 10% Happier                                         | 2014 | Modern Lit       |
+    | fake_book                                           | 2001 | Modern Lit       |
+    | Lincoln In The Bardo                                | 2017 | Modern Lit       |
+    +-----------------------------------------------------+------+------------------+
+    19 rows in set (0.00 sec)
+
+    mysql> SELECT title as Title, stock_quantity as 'In Stock', CASE WHEN stock_quantity BETWEEN 0 AND 50 THEN '*' WHEN stock_quantity BETWEEN 51 AND 100 THEN '**' ELSE '***' END AS Stock FROM books;
+    +-----------------------------------------------------+----------+-------+
+    | Title                                               | In Stock | Stock |
+    +-----------------------------------------------------+----------+-------+
+    | The Namesake                                        |       32 | *     |
+    | Norse Mythology                                     |       43 | *     |
+    | American Gods                                       |       12 | *     |
+    | Interpreter of Maladies                             |       97 | **    |
+    | A Hologram for the King: A Novel                    |      154 | ***   |
+    | The Circle                                          |       26 | *     |
+    | The Amazing Adventures of Kavalier & Clay           |       68 | **    |
+    | Just Kids                                           |       55 | **    |
+    | A Heartbreaking Work of Staggering Genius           |      104 | ***   |
+    | Coraline                                            |      100 | **    |
+    | What We Talk About When We Talk About Love: Stories |       23 | *     |
+    | Where I'm Calling From: Selected Stories            |       12 | *     |
+    | White Noise                                         |       49 | *     |
+    | Cannery Row                                         |       95 | **    |
+    | Oblivion: Stories                                   |      172 | ***   |
+    | Consider the Lobster                                |       92 | **    |
+    | 10% Happier                                         |       29 | *     |
+    | fake_book                                           |      287 | ***   |
+    | Lincoln In The Bardo                                |     1000 | ***   |
+    +-----------------------------------------------------+----------+-------+
+    19 rows in set (0.00 sec)
+
+    mysql> SELECT title as Title, CASE WHEN stock_quantity BETWEEN 0 AND 50 THEN '*' WHEN stock_quantity BETWEEN 51 AND 100 THEN '**' WHEN stock_quantity BETWEEN 101 AND 150 THEN '***' ELSE '****' END AS Stock FROM books;                                                                         
+    +-----------------------------------------------------+-------+
+    | Title                                               | Stock |
+    +-----------------------------------------------------+-------+
+    | The Namesake                                        | *     |
+    | Norse Mythology                                     | *     |
+    | American Gods                                       | *     |
+    | Interpreter of Maladies                             | **    |
+    | A Hologram for the King: A Novel                    | ****  |
+    | The Circle                                          | *     |
+    | The Amazing Adventures of Kavalier & Clay           | **    |
+    | Just Kids                                           | **    |
+    | A Heartbreaking Work of Staggering Genius           | ***   |
+    | Coraline                                            | **    |
+    | What We Talk About When We Talk About Love: Stories | *     |
+    | Where I'm Calling From: Selected Stories            | *     |
+    | White Noise                                         | *     |
+    | Cannery Row                                         | **    |
+    | Oblivion: Stories                                   | ****  |
+    | Consider the Lobster                                | **    |
+    | 10% Happier                                         | *     |
+    | fake_book                                           | ****  |
+    | Lincoln In The Bardo                                | ****  |
+    +-----------------------------------------------------+-------+
+    19 rows in set (0.00 sec)
+
+    mysql> SELECT title as Title, CASE WHEN stock_quantity <= 50 THEN '*' WHEN stock_quantity <= 100 THEN '**' WHEN stock_quantity <= 150 THEN '***' ELSE '****' END AS Stock FROM books;
+    +-----------------------------------------------------+-------+
+    | Title                                               | Stock |
+    +-----------------------------------------------------+-------+
+    | The Namesake                                        | *     |
+    | Norse Mythology                                     | *     |
+    | American Gods                                       | *     |
+    | Interpreter of Maladies                             | **    |
+    | A Hologram for the King: A Novel                    | ****  |
+    | The Circle                                          | *     |
+    | The Amazing Adventures of Kavalier & Clay           | **    |
+    | Just Kids                                           | **    |
+    | A Heartbreaking Work of Staggering Genius           | ***   |
+    | Coraline                                            | **    |
+    | What We Talk About When We Talk About Love: Stories | *     |
+    | Where I'm Calling From: Selected Stories            | *     |
+    | White Noise                                         | *     |
+    | Cannery Row                                         | **    |
+    | Oblivion: Stories                                   | ****  |
+    | Consider the Lobster                                | **    |
+    | 10% Happier                                         | *     |
+    | fake_book                                           | ****  |
+    | Lincoln In The Bardo                                | ****  |
+    +-----------------------------------------------------+-------+
+    19 rows in set (0.00 sec)
+
+- Don't have to include 'released_year' or 'stock_quantity' printed out to reference in the CASE.
+- In the CASE, do not include commas, or it will break it.
+
+******************************************************************************
+#### EXERCISES
+******************************************************************************
 
