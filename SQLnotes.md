@@ -126,19 +126,17 @@ CREATE TABLE tablename<shoulde be plurralized>
 
     mysql> CREATE TABLE dogs (name VARCHAR(100), age INT);
     
-- Now to check if tables/dbs were created
-
+***Now to check if tables/dbs were created***
 
     mysql> SHOW TABLES;
 
     mysql> SHOW COLUMNS FROM <tablename>;
 
-- Or....
-
+***Or....***
 
     mysql> DESC <tablename>;   
 
-- Though not identical
+***Though not identical***
 
 **********************
 
@@ -239,7 +237,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +-------+------+
     6 rows in set (0.00 sec)
     
-- There is a lot more to do with SELECT command
+***There is a lot more to do with SELECT command***
 
 *****************************************************
 
@@ -405,7 +403,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     mysql> insert into dogs4 (name) values (Null);                                                                                              
     ERROR 1048 (23000): Column 'name' cannot be null
 
-- If NOT_NULL is not enter, any variable could be entered in as NULL.
+***If NOT_NULL is not enter, any variable could be entered in as NULL.***
 
 *******************************
 
@@ -505,9 +503,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     6 rows in set (0.00 sec)
 
 
-- COULD ALSO SET UP TABLE LIKE SO:
-
-----------------------------------------------
+***COULD ALSO SET UP TABLE LIKE SO:***
 
     create table employees(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, last_name VARCHAR(20) NOT NULL, first_name VARCHAR(20) NOT NULL, middle_int VARCHAR(1), age INT NOT NULL, current_status VARCHAR(20) NOT NULL DEFAULT 'employed');
 
@@ -570,9 +566,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +--------+----------------+------------+------+
     7 rows in set (0.00 sec)
 
-- SELECT Expression is how we select a specific column.
-
---------------------------------------------------
+***SELECT Expression is how we select a specific column.***
 
     mysql> select name from cats;
     +----------------+
@@ -705,7 +699,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +--------+------+---------+------+
     1 row in set (0.00 sec)
 
-- By default, case insensitive
+***By default, case insensitive***
 
 ****************************************
 #### EXERCISES
@@ -846,9 +840,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +--------+----------------+------------+------+
     7 rows in set (0.00 sec)
 
-- UPDATING RULE OF THUMB:
-
-------------------------------------
+***UPDATING RULE OF THUMB:***
 
     Try SELECTing before UPDATE
 
@@ -933,7 +925,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +--------+----------------+-------------------+------+
     6 rows in set (0.00 sec)
 
-- "DELETE FROM cats;" will delete the content, but not the tables
+***"DELETE FROM cats;" will delete the content, but not the tables***
 
 ****************************************************
 #### EXERCISE
@@ -1357,7 +1349,7 @@ CREATE TABLE tablename<shoulde be plurralized>
 
 ------------------------------------------------------------
 
-- CONCAT_WS
+### CONCAT_WS
 
 ------------------------------------------------------
 
@@ -1500,11 +1492,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +----------------------------------+
     1 row in set (0.00 sec)
 
-----------------------------------------------
-
-- REPLACE is case sensitive
-
-----------------------------------------------
+***REPLACE is case sensitive***
 
     mysql> select replace('chesse bread coffee milk', ' ', ' and ');                                                                            
     +---------------------------------------------------+
@@ -2441,11 +2429,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +-----------------+
     3 rows in set (0.00 sec)
 
------------------------------
-
-- Not as useful on it's own
-
------------------------------
+***Not as useful on it's own***
 
     mysql> select title, released_year from books order by 2;
     +-----------------------------------------------------+---------------+
@@ -2523,9 +2507,8 @@ CREATE TABLE tablename<shoulde be plurralized>
     +----------------------------------+---------------+
     5 rows in set (0.00 sec)
 
-- Example of use: used in pagination of content on the front-end
-- If wanting to retreive all rows from a certain offset to the end use a random large number 
-  graeter than the amount of items in the table
+***Example of use: used in pagination of content on the front-end***
+***If wanting to retreive all rows from a certain offset to the end use a random large number greater than the amount of items in the table***
 
 
     "select * from <tbl> limit 95, 18446744073709551615;""
@@ -2697,12 +2680,8 @@ CREATE TABLE tablename<shoulde be plurralized>
     +-----------------------------------------------------+----------------+
     13 rows in set (0.01 sec)
 
-------------------------------------------------------------------
-
-- '%' means anything, '__' means length of characters
-- How to select an item if % or _ are used as a character?
-
--------------------------------------------------------------------
+***'%' means anything, '__' means length of characters***
+***How to select an item if % or _ are used as a character?***
 
     mysql> select title from books where title like "%\%%";
     +-------------+
@@ -2973,11 +2952,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +--------------+----------------+
     19 rows in set (0.00 sec)
 
----------------------------------------------------
-
-- Shows the combo of both distinct fname & distinct lname
-
-----------------------------------------------------
+***Shows the combo of both distinct fname & distinct lname***
 
     mysql> select count(distinct author_lname, author_fname) from books; 
     +--------------------------------------------+
@@ -3008,11 +2983,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +--------------+
     1 row in set (0.00 sec)
 
-------------------------------
-
-- Better way
-
-------------------------------
+***Better way***
 
     mysql> select count(*) from books where title like '%the%';                                                                                   
     +----------+
@@ -3054,11 +3025,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +-----------------------------------------------------+----------------+
     19 rows in set (0.00 sec)
 
---------------------------------------------------------------------------
-
-- This will create a 'super row' with all of the authors books in one row
-
----------------------------------------------------------------------------
+***This will create a 'super row' with all of the authors books in one row***
 
     mysql> select title, author_lname from books group by author_lname;                                                                           
     +-----------------------------------------------------+----------------+
@@ -3122,11 +3089,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +-----------------------------------------------------+--------------+----------------+
     19 rows in set (0.00 sec)
 
--------------------------------------------------------
-
-- This following is not really useful, as it does not distinguish if there are more than one author with the same last name
-
---------------------------------------------------------
+***This following is not really useful, as it does not distinguish if there are more than one author with the same last name***
 
     mysql> select title, author_fname, author_lname from books group by author_lname;
     +-----------------------------------------------------+--------------+----------------+
@@ -3146,11 +3109,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +-----------------------------------------------------+--------------+----------------+
     11 rows in set (0.00 sec)
 
------------------------------------------------------------------------
-
-- Still has problem with last name, if there are multiple
-
--------------------------------------------------------------------------
+***Still has problem with last name, if there are multiple***
 
     mysql> select author_fname, author_lname, count(*) from books group by author_lname;                                                  
     +--------------+----------------+----------+
@@ -3307,11 +3266,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +------------+
     1 row in set (0.00 sec)
 
-------------------------------------------------------
-
-- This provides the max pages, and the first book title in the DB, which doesn't match
-
--------------------------------------------------------
+***This provides the max pages, and the first book title in the DB, which doesn't match***
 
     mysql> SELECT Max(pages), title FROM books;
     +------------+--------------+
@@ -3373,11 +3328,7 @@ CREATE TABLE tablename<shoulde be plurralized>
     +-------------------------------------------+-------+
     1 row in set (0.00 sec)
 
--------------------------------------------------------------------------
-
-- As the previous method is actually running two queries, a faster/better way is as follows
-
--------------------------------------------------------------------------
+***As the previous method is actually running two queries, a faster/better way is as follows***
 
 
     mysql> SELECT * FROM books ORDER BY pages ASC LIMIT 1;                                                                                        
@@ -3438,11 +3389,7 @@ GROUP   BY author_lname,
     +--------------+----------------+--------------------+
     12 rows in set (0.01 sec)
 
-----------------------------------------------------------------------------------------
-
-- If you leave off 'author_fname', then it will bunch up authors with the same last name
-
-----------------------------------------------------------------------------------------
+***If you leave off 'author_fname', then it will bunch up authors with the same last name***
 
     mysql> SELECT Max(pages)
         -> FROM books
@@ -3679,8 +3626,8 @@ GROUP   BY author_lname,
     | John       | Steinbeck      |              181.0000 |
     +------------+----------------+-----------------------+
     12 rows in set (0.00 sec)
-    
-- due to DATA TYPE, automatically includes 4 decimals, regardless if a complete number
+
+***Due to DATA TYPE, automatically includes 4 decimals, regardless if a complete number***
 
 ****************************************************************************
 #### EXERCISES
@@ -3909,9 +3856,8 @@ GROUP   BY author_lname,
 
     mysql> CREATE TABLE items (price DECIMAL(5,2));
     Query OK, 0 rows affected (0.01 sec)
-    
-- The table inserts the value as the highest possible decimal
 
+***The table inserts the value as the highest possible decimal***
 
     mysql> INSERT INTO items(price) VALUES(7987654);
     Query OK, 1 row affected, 1 warning (0.01 sec)
@@ -3919,8 +3865,7 @@ GROUP   BY author_lname,
     mysql> INSERT INTO items(price) VALUES(34.88);
     Query OK, 1 row affected (0.01 sec)
     
-- The table rounds the decimal up to the next whole number
-
+***The table rounds the decimal up to the next whole number***
 
     mysql> INSERT INTO items(price) VALUES(298.9999);
     Query OK, 1 row affected, 1 warning (0.01 sec)
@@ -3959,17 +3904,11 @@ GROUP   BY author_lname,
     FLOAT       | 4 bytes       | ~7 digits
     DOUBLE      | 8 bytes       | ~15 digits
 
-------------------------------------------------
-- Meaning, with FLOAT: if 1000001 is stored, the last 1 might not always be 1 when we retrieve it
-
----------------------------------------------------------
+***Meaning, with FLOAT: if 1000001 is stored, the last 1 might not always be 1 when we retrieve it***
 
     Double is more percise
 
----------------------------------------------------
-- Which is best to use: Always use DECIMAL, unless percision doesn' matter
-
----------------------------------------------------
+***Which is best to use: Always use DECIMAL, unless percision doesn' matter***
 
     mysql> CREATE TABLE thingies (price FLOAT);
     Query OK, 0 rows affected (0.02 sec)
@@ -4903,9 +4842,7 @@ GROUP   BY author_lname,
     +-------------------------------------------+----------------+
     6 rows in set (0.00 sec)
 
-
-- With > & >= it's looking for a boolean value (True or False value).
-
+***With > & >= it's looking for a boolean value (True or False value).***
 
     mysql> SELECT 99 > 1;
     +--------+
@@ -5014,7 +4951,7 @@ GROUP   BY author_lname,
     +----------------------------------+--------+------+
     1 row in set (0.00 sec)
     
-- Not limited to two conditions
+***Not limited to two conditions***
 
 *************************************************************
 
@@ -5037,11 +4974,8 @@ GROUP   BY author_lname,
     +-------------------------------------------+----------+------+
     6 rows in set (0.01 sec)
     
-----------------------------------------
-- With 'Condition 1 && Condition 2': Both sides must be equal to be true.
-- With 'Condition 1 || Condition 2': Only one side needs to be true for the whole thing to be true.
-
-----------------------------------------
+***With 'Condition 1 && Condition 2': Both sides must be equal to be true.***
+***With 'Condition 1 || Condition 2': Only one side needs to be true for the whole thing to be true.***
 
     mysql> SELECT title AS Title, author_lname AS Author, released_year AS Year, stock_quantity AS Stock FROM books WHERE author_lname = 'Eggers' || released_year > 2010 OR stock_quantity > 100;                                                                                                 
     +-------------------------------------------+----------------+------+-------+
@@ -5058,9 +4992,7 @@ GROUP   BY author_lname,
     +-------------------------------------------+----------------+------+-------+
     8 rows in set (0.00 sec)
 
-
--------------------------------
-- Again, not matter how many conditions are involved, only one has to be true for the entire OR query to be true.
+***Again, not matter how many conditions are involved, only one has to be true for the entire OR query to be true.***
 
 **************************************************************
 
@@ -5188,7 +5120,7 @@ GROUP   BY author_lname,
     +-------+---------------------+
     1 row in set (0.00 sec)
 
-- The later is the appropriate way to look it up, even though MySQL is smart enough to understand what is being requested
+***The later is the appropriate way to look it up, even though MySQL is smart enough to understand what is being requested***
 
 *****************************************************
 
@@ -5415,8 +5347,8 @@ GROUP   BY author_lname,
     +-----------------------------------------------------+-------+
     19 rows in set (0.00 sec)
 
-- Don't have to include 'released_year' or 'stock_quantity' printed out to reference in the CASE.
-- In the CASE, do not include commas, or it will break it.
+***Don't have to include 'released_year' or 'stock_quantity' printed out to reference in the CASE.***
+***In the CASE, do not include commas, or it will break it***
 
 ******************************************************************************
 #### EXERCISES
@@ -5523,7 +5455,7 @@ GROUP   BY author_lname,
     +-----------------------------------------------------+-----------+
     6 rows in set (0.00 sec)
 
-    ##### Alternatives
+***Alternatives***
 
     mysql> SELECT title, author_lname FROM books WHERE SUBSTR(author_lname,1,1) = 'C' || SUBSTR(author_lname,1,1) = 'S';
     +-----------------------------------------------------+--------------+
@@ -5609,7 +5541,7 @@ GROUP   BY author_lname,
     +-----------------------------------------------------+----------------------+----------+
     12 rows in set (0.00 sec)
 
-    ##### BETTER WAY
+***BETTER WAY***
 
     mysql> SELECT title AS Title, CONCAT(author_fname, ' ', author_lname) AS Author, CASE WHEN COUNT(*) = 1 THEN CONCAT(COUNT(*), ' book') ELSE CONCAT(COUNT(*), ' books') END AS 'Pubished' FROM books GROUP BY author_lname, author_fname;                                                      
     +-----------------------------------------------------+----------------------+----------+
@@ -5664,7 +5596,7 @@ How to store:
 - Simplest approach is using two tables with 1:MANY
 
 
-    #### CUSTOMERS
+***CUSTOMERS***
 
     +-------------+------------+-----------+-----------------+
     | customer_id | first_name | last_name | email           |
@@ -5675,7 +5607,7 @@ How to store:
     | 4           | Blue       | Steele    | blue@gmail.com  |
     +-------------+------------+-----------+-----------------+
 
-    #### ORDERS
+***ORDERS***
 
     +----------+--------------+-----------+-------------+
     | order_id | order_date   | amount    | customer_id |
