@@ -5634,5 +5634,107 @@ GROUP   BY author_lname,
 
 ## ONE TOO MANY
 
+*******************************************************************************************
+
+### Relationships and JOINS
+
+- Real world data is messy and interrelated
+- Relation Basics:
+
+1. One to One Relatinship
+2. One to Many Relatinship
+3. Many to Many Relatinship
+
 -------------------------------------------
+
+### 1:MANY
+
+***Customers & Orders examples***
+
+We want to store:
+
+- A customer's first & last name
+- A customer's email
+- The date of the purchase
+- The price of the order
+
+How to store:
+
+- One option is one large table
+- Simplest approach is using two tables with 1:MANY
+
+
+    #### CUSTOMERS
+
+    +-------------+------------+-----------+-----------------+
+    | customer_id | first_name | last_name | email           |
+    +-------------+------------+-----------+-----------------+
+    | 1           | Boy        | George    | george@gmail.com|
+    | 2           | George     | Michael   | gm@gmail.com    |
+    | 3           | David      | Bowie     | david@gmail.com |
+    | 4           | Blue       | Steele    | blue@gmail.com  |
+    +-------------+------------+-----------+-----------------+
+
+    #### ORDERS
+
+    +----------+--------------+-----------+-------------+
+    | order_id | order_date   | amount    | customer_id |
+    +----------+--------------+-----------+-------------+
+    | 1        | '2016/02/10' | 99.99     | 1           |
+    | 2        | '2017/11/11' | 35.50     | 1           |
+    | 3        | '2014/12/12' | 800.97    | 2           |
+    | 4        | '2015/01/03' | 12.50     | 2           |
+    +----------+--------------+-----------+-------------+
+
+---------------------------------------------------------------------
+
+### [Foreign Keys](https://dev.mysql.com/doc/refman/8.0/en/ansi-diff-foreign-keys.html)
+
+--------------------------------------------------------------------
+
+    mysql> CREATE DATABASE customers_and_orders;
+    Query OK, 1 row affected (0.00 sec)
+
+    mysql> USE customers_and_orders;
+    Database changed
+
+    mysql> mysql> CREATE TABLE customers(
+        ->     id INT AUTO_INCREMENT PRIMARY KEY,
+        ->     first_name VARCHAR(100),
+        ->     last_name VARCHAR(100),
+        ->     email VARCHAR(100)
+        -> );
+    Query OK, 0 rows affected (0.02 sec)
+
+    mysql> CREATE TABLE orders(
+        ->     id INT AUTO_INCREMENT PRIMARY KEY,
+        ->     order_date DATE,
+        ->     amount DECIMAL(8,2),
+        ->     customer_id INT,
+        ->     FOREIGN KEY(customer_id) REFERENCES customers(id)
+        -> );
+    Query OK, 0 rows affected (0.02 sec)
+
+***Without the reference to the FOREIGN KEY, then an order could be inserted with a customer_id that does not exist***
+
+    mysql> INSERT INTO customers (first_name, last_name, email)
+        -> VALUES  ('Boy', 'George', 'george@gmail.com'),
+        ->         ('George', 'Michael', 'gm@gmail.com'),
+        ->         ('David', 'Bowie', 'david@gmail.com'),
+        ->         ('Blue', 'Steele', 'blue@gmail.com'),
+        ->         ('Bette', 'Davis', 'bette@aol.com');
+    Query OK, 5 rows affected (0.05 sec)
+    Records: 5  Duplicates: 0  Warnings: 0
+
+    mysql> INSERT INTO orders (order_date, amount, customer_id)
+        -> VALUES  ('2016/02/10', 99.99, 1),
+        ->         ('2017/11/11', 35.50, 1),
+        ->         ('2014/12/12', 800.67, 2),
+        ->         ('2015/01/03', 12.50, 2),
+        ->         ('1999/04/1', 450.25, 5);
+    Query OK, 5 rows affected (0.01 sec)
+    Records: 5  Duplicates: 0  Warnings: 0
+
+
+
 
