@@ -5667,6 +5667,588 @@ How to store:
     Query OK, 5 rows affected (0.01 sec)
     Records: 5  Duplicates: 0  Warnings: 0
 
+***This is what happens when you attempt to INSERT with an invalid customer_id***
+
+    mysql> INSERT INTO orders (order_date, amount, customer_id)
+        -> VALUES  ('2019/02/18', 45.12, 98);                                                                                                       
+    ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`customers_and_orders`.`orders`, CONSTRAINT `orders_ibfk_1`
+     FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`))
+
+********************************************************************************
+
+### [CROSS JOIN](https://dev.mysql.com/doc/refman/8.0/en/nested-join-optimization.html)
+
+-------------------------------------------
+
+    mysql> SELECT * FROM orders;
+    +----+------------+--------+-------------+
+    | id | order_date | amount | customer_id |
+    +----+------------+--------+-------------+
+    |  1 | 2016-02-10 |  99.99 |           1 |
+    |  2 | 2017-11-11 |  35.50 |           1 |
+    |  3 | 2014-12-12 | 800.67 |           2 |
+    |  4 | 2015-01-03 |  12.50 |           2 |
+    |  5 | 1999-04-01 | 450.25 |           5 |
+    +----+------------+--------+-------------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT * FROM customers WHERE last_name='George';
+    +----+------------+-----------+------------------+
+    | id | first_name | last_name | email            |
+    +----+------------+-----------+------------------+
+    |  1 | Boy        | George    | george@gmail.com |
+    +----+------------+-----------+------------------+
+    1 row in set (0.00 sec)
+
+    mysql> SELECT * FROM orders WHERE customer_id=1;
+    +----+------------+--------+-------------+
+    | id | order_date | amount | customer_id |
+    +----+------------+--------+-------------+
+    |  1 | 2016-02-10 |  99.99 |           1 |
+    |  2 | 2017-11-11 |  35.50 |           1 |
+    +----+------------+--------+-------------+
+    2 rows in set (0.00 sec)
+
+    mysql> SELECT * FROM orders WHERE customer_id=
+        ->     (
+        ->         SELECT id FROM customers
+        ->         WHERE last_name='George'
+        ->     );
+    +----+------------+--------+-------------+
+    | id | order_date | amount | customer_id |
+    +----+------------+--------+-------------+
+    |  1 | 2016-02-10 |  99.99 |           1 |
+    |  2 | 2017-11-11 |  35.50 |           1 |
+    +----+------------+--------+-------------+
+    2 rows in set (0.00 sec)
+
+***Use JOINS to take two tables and join them in several configurations to combine the table data into one table***
+
+    mysql> SELECT * FROM customers, orders;
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    | id | first_name | last_name | email            | id | order_date | amount | customer_id |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    |  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+    |  2 | George     | Michael   | gm@gmail.com     |  1 | 2016-02-10 |  99.99 |           1 |
+    |  3 | David      | Bowie     | david@gmail.com  |  1 | 2016-02-10 |  99.99 |           1 |
+    |  4 | Blue       | Steele    | blue@gmail.com   |  1 | 2016-02-10 |  99.99 |           1 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  1 | 2016-02-10 |  99.99 |           1 |
+    |  1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+    |  2 | George     | Michael   | gm@gmail.com     |  2 | 2017-11-11 |  35.50 |           1 |
+    |  3 | David      | Bowie     | david@gmail.com  |  2 | 2017-11-11 |  35.50 |           1 |
+    |  4 | Blue       | Steele    | blue@gmail.com   |  2 | 2017-11-11 |  35.50 |           1 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  2 | 2017-11-11 |  35.50 |           1 |
+    |  1 | Boy        | George    | george@gmail.com |  3 | 2014-12-12 | 800.67 |           2 |
+    |  2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+    |  3 | David      | Bowie     | david@gmail.com  |  3 | 2014-12-12 | 800.67 |           2 |
+    |  4 | Blue       | Steele    | blue@gmail.com   |  3 | 2014-12-12 | 800.67 |           2 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  3 | 2014-12-12 | 800.67 |           2 |
+    |  1 | Boy        | George    | george@gmail.com |  4 | 2015-01-03 |  12.50 |           2 |
+    |  2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+    |  3 | David      | Bowie     | david@gmail.com  |  4 | 2015-01-03 |  12.50 |           2 |
+    |  4 | Blue       | Steele    | blue@gmail.com   |  4 | 2015-01-03 |  12.50 |           2 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  4 | 2015-01-03 |  12.50 |           2 |
+    |  1 | Boy        | George    | george@gmail.com |  5 | 1999-04-01 | 450.25 |           5 |
+    |  2 | George     | Michael   | gm@gmail.com     |  5 | 1999-04-01 | 450.25 |           5 |
+    |  3 | David      | Bowie     | david@gmail.com  |  5 | 1999-04-01 | 450.25 |           5 |
+    |  4 | Blue       | Steele    | blue@gmail.com   |  5 | 1999-04-01 | 450.25 |           5 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-01 | 450.25 |           5 |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    25 rows in set (0.00 sec)
+
+***This type of JOINS is a 'Cross Joins' or 'Contagion Joins'***
+***This takes every customer and conjoining it to every order***
+
+********************************************************************************
+
+### INNER JOINS
+
+- Only matches with the specific content listed in the JOIN
+- Can be written as 'INNER JOIN', but if 'INNER' is not included, it is implied.
+
+----------------------------------------------------
+
+***Implicit INNER JOIN***
+
+    mysql> SELECT * FROM customers, orders WHERE customers.id = orders.customer_id;
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    | id | first_name | last_name | email            | id | order_date | amount | customer_id |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    |  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+    |  1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+    |  2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+    |  2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-01 | 450.25 |           5 |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, order_date AS 'Order Date', amount AS Amount FROM customers, orders WHERE customers.id = orders.customer_id;
+    +----------------+------------+--------+
+    | Customer       | Order Date | Amount |
+    +----------------+------------+--------+
+    | Boy George     | 2016-02-10 |  99.99 |
+    | Boy George     | 2017-11-11 |  35.50 |
+    | George Michael | 2014-12-12 | 800.67 |
+    | George Michael | 2015-01-03 |  12.50 |
+    | Bette Davis    | 1999-04-01 | 450.25 |
+    +----------------+------------+--------+
+    5 rows in set (0.01 sec)
+
+***Explicit INNER JOIN***
+
+    mysql> SELECT * FROM customers
+        -> JOIN orders
+        ->     ON customers.id=orders.customer_id;
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    | id | first_name | last_name | email            | id | order_date | amount | customer_id |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    |  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+    |  1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+    |  2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+    |  2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-01 | 450.25 |           5 |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    5 rows in set (0.01 sec)
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, order_date AS 'Order Date', amount AS Amount FROM customers
+        -> JOIN orders
+        ->     ON customers.id=orders.customer_id;
+    +----------------+------------+--------+
+    | Customer       | Order Date | Amount |
+    +----------------+------------+--------+
+    | Boy George     | 2016-02-10 |  99.99 |
+    | Boy George     | 2017-11-11 |  35.50 |
+    | George Michael | 2014-12-12 | 800.67 |
+    | George Michael | 2015-01-03 |  12.50 |
+    | Bette Davis    | 1999-04-01 | 450.25 |
+    +----------------+------------+--------+
+    5 rows in set (0.00 sec)
+
+***ARBITRARY JOIN - don't do this***
+
+    mysql> SELECT * FROM customers JOIN orders ON customers.id=orders.id;
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    | id | first_name | last_name | email            | id | order_date | amount | customer_id |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    |  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+    |  2 | George     | Michael   | gm@gmail.com     |  2 | 2017-11-11 |  35.50 |           1 |
+    |  3 | David      | Bowie     | david@gmail.com  |  3 | 2014-12-12 | 800.67 |           2 |
+    |  4 | Blue       | Steele    | blue@gmail.com   |  4 | 2015-01-03 |  12.50 |           2 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-01 | 450.25 |           5 |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    5 rows in set (0.00 sec)
+
+***Explicit INNER JOIN is the best***
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, order_date AS 'Order Date', amount AS Amount FROM customers
+        -> JOIN orders
+        ->     ON customers.id=orders.customer_id
+        -> ORDER BY amount;
+    +----------------+------------+--------+
+    | Customer       | Order Date | Amount |
+    +----------------+------------+--------+
+    | George Michael | 2015-01-03 |  12.50 |
+    | Boy George     | 2017-11-11 |  35.50 |
+    | Boy George     | 2016-02-10 |  99.99 |
+    | Bette Davis    | 1999-04-01 | 450.25 |
+    | George Michael | 2014-12-12 | 800.67 |
+    +----------------+------------+--------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, order_date AS 'Order Date', amount AS Amount FROM customers
+        -> JOIN orders
+        ->     ON customers.id=orders.customer_id
+        -> ORDER BY order_date;
+    +----------------+------------+--------+
+    | Customer       | Order Date | Amount |
+    +----------------+------------+--------+
+    | Bette Davis    | 1999-04-01 | 450.25 |
+    | George Michael | 2014-12-12 | 800.67 |
+    | George Michael | 2015-01-03 |  12.50 |
+    | Boy George     | 2016-02-10 |  99.99 |
+    | Boy George     | 2017-11-11 |  35.50 |
+    +----------------+------------+--------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, order_date AS 'Order Date', amount AS Amount FROM customers
+        -> JOIN orders
+        ->     ON customers.id=orders.customer_id
+        -> GROUP BY orders.customer_id;
+    +----------------+------------+--------+
+    | Customer       | Order Date | Amount |
+    +----------------+------------+--------+
+    | Boy George     | 2016-02-10 |  99.99 |
+    | George Michael | 2014-12-12 | 800.67 |
+    | Bette Davis    | 1999-04-01 | 450.25 |
+    +----------------+------------+--------+
+    3 rows in set (0.00 sec)
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, order_date AS 'Order Date', SUM(amount) AS Amount FROM customers
+        -> JOIN orders
+        ->     ON customers.id=orders.customer_id
+        -> GROUP BY orders.customer_id;
+    +----------------+------------+--------+
+    | Customer       | Order Date | Amount |
+    +----------------+------------+--------+
+    | Boy George     | 2016-02-10 | 135.49 |
+    | George Michael | 2014-12-12 | 813.17 |
+    | Bette Davis    | 1999-04-01 | 450.25 |
+    +----------------+------------+--------+
+    3 rows in set (0.00 sec)
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, SUM(amount) AS Total FROM customers
+        -> JOIN orders
+        ->     ON customers.id=orders.customer_id
+        -> GROUP BY orders.customer_id
+        -> ORDER BY Total DESC;
+    +----------------+--------+
+    | Customer       | Total  |
+    +----------------+--------+
+    | George Michael | 813.17 |
+    | Bette Davis    | 450.25 |
+    | Boy George     | 135.49 |
+    +----------------+--------+
+    3 rows in set (0.00 sec)
+
+*******************************************************************************
+
+### LEFT JOIN
+
+- LEFT JOIN takes all of the information from the left table and the content that is requested to be matched.
+
+-------------------------------------------------
+
+    mysql> SELECT * FROM customers
+        -> LEFT JOIN orders
+        ->     ON customers.id=orders.customer_id;
+    +----+------------+-----------+------------------+------+------------+--------+-------------+
+    | id | first_name | last_name | email            | id   | order_date | amount | customer_id |
+    +----+------------+-----------+------------------+------+------------+--------+-------------+
+    |  1 | Boy        | George    | george@gmail.com |    1 | 2016-02-10 |  99.99 |           1 |
+    |  1 | Boy        | George    | george@gmail.com |    2 | 2017-11-11 |  35.50 |           1 |
+    |  2 | George     | Michael   | gm@gmail.com     |    3 | 2014-12-12 | 800.67 |           2 |
+    |  2 | George     | Michael   | gm@gmail.com     |    4 | 2015-01-03 |  12.50 |           2 |
+    |  3 | David      | Bowie     | david@gmail.com  | NULL | NULL       |   NULL |        NULL |
+    |  4 | Blue       | Steele    | blue@gmail.com   | NULL | NULL       |   NULL |        NULL |
+    |  5 | Bette      | Davis     | bette@aol.com    |    5 | 1999-04-01 | 450.25 |           5 |
+    +----+------------+-----------+------------------+------+------------+--------+-------------+
+    7 rows in set (0.00 sec)
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, order_date AS 'Order Date', amount AS Amount FROM customers
+        -> LEFT JOIN orders
+        ->     ON customers.id=orders.customer_id;
+    +----------------+------------+--------+
+    | Customer       | Order Date | Amount |
+    +----------------+------------+--------+
+    | Boy George     | 2016-02-10 |  99.99 |
+    | Boy George     | 2017-11-11 |  35.50 |
+    | George Michael | 2014-12-12 | 800.67 |
+    | George Michael | 2015-01-03 |  12.50 |
+    | David Bowie    | NULL       |   NULL |
+    | Blue Steele    | NULL       |   NULL |
+    | Bette Davis    | 1999-04-01 | 450.25 |
+    +----------------+------------+--------+
+    7 rows in set (0.00 sec)
+
+    mysql> SELECT CONCAT(first_name, ' ', last_name) AS Customer, SUM(amount) AS Total FROM customers
+        -> LEFT JOIN orders
+        ->     ON customers.id=orders.customer_id
+        -> GROUP BY customers.id;
+    +----------------+--------+
+    | Customer       | Total  |
+    +----------------+--------+
+    | Boy George     | 135.49 |
+    | George Michael | 813.17 |
+    | David Bowie    |   NULL |
+    | Blue Steele    |   NULL |
+    | Bette Davis    | 450.25 |
+    +----------------+--------+
+    5 rows in set (0.00 sec)
+
+***Simple way to substitute NULL with an actual value, use IFNULL, instead of a lengthy CASE statement***
+
+    mysql> SELECT  CONCAT(first_name, ' ', last_name) AS Customer,
+        ->         IFNULL(SUM(amount), 0) as Total
+        -> FROM customers
+        -> LEFT JOIN orders
+        ->     ON customers.id=orders.customer_id
+        -> GROUP BY customers.id;
+    +----------------+--------+
+    | Customer       | Total  |
+    +----------------+--------+
+    | Boy George     | 135.49 |
+    | George Michael | 813.17 |
+    | David Bowie    |   0.00 |
+    | Blue Steele    |   0.00 |
+    | Bette Davis    | 450.25 |
+    +----------------+--------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT  CONCAT(first_name, ' ', last_name) AS Customer,
+        ->         IFNULL(SUM(amount), 0) as Total
+        -> FROM customers
+        -> LEFT JOIN orders
+        ->     ON customers.id=orders.customer_id
+        -> GROUP BY customers.id
+        -> ORDER BY Total;
+    +----------------+--------+
+    | Customer       | Total  |
+    +----------------+--------+
+    | Blue Steele    |   0.00 |
+    | David Bowie    |   0.00 |
+    | Boy George     | 135.49 |
+    | Bette Davis    | 450.25 |
+    | George Michael | 813.17 |
+    +----------------+--------+
+    5 rows in set (0.01 sec)
+
+********************************************************************************
+
+### RIGHT JOINS
+#### PT 1
+
+- RIGHT JOINS takes the information requested to be matched & all of the information from the right table into a new table
+
+----------------------------------------------
+
+    mysql> SELECT * FROM customers
+        -> JOIN orders
+        ->     ON customers.id=orders.customer_id;
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    | id | first_name | last_name | email            | id | order_date | amount | customer_id |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    |  1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+    |  1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+    |  2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+    |  2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+    |  5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-01 | 450.25 |           5 |
+    +----+------------+-----------+------------------+----+------------+--------+-------------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT * FROM customers
+        -> RIGHT JOIN orders
+        ->     ON customers.id=orders.customer_id;
+    +------+------------+-----------+------------------+----+------------+--------+-------------+
+    | id   | first_name | last_name | email            | id | order_date | amount | customer_id |
+    +------+------------+-----------+------------------+----+------------+--------+-------------+
+    |    1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+    |    1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+    |    2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+    |    2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+    |    5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-01 | 450.25 |           5 |
+    +------+------------+-----------+------------------+----+------------+--------+-------------+
+    5 rows in set (0.00 sec)
+
+***The reason there does not appear to be a difference is because there are not any orders that are not associated to a customer***
+
+- The only way to acheive this would be to fudge the data
+- This could happen in a real world setting if someone accidentally deleted info or an order was associated to the wrong customer_id
+- It would not be easy to delete a customer, due to the FOREIGN KEY constraint, without deleting the associated order first.
+- Another real world scenario would be that a DB was inherited, that did not have a FOREIGN KEY constraint.
+- There really isn't a difference between RIGHT & LEFT JOIN if you change the order of the joined tables.
+- Some developments won't even support a RIGHT JOIN.
+
+********************************************************************************
+#### EXERCISES
+********************************************************************************
+
+- WRITE THIS SCEHMA
+
+    STUDENTS        PAPERS
+    - id            - title
+    - first_name    - grade
+                    - student_id
+
+-----------------------------------------------
+
+    mysql> CREATE TABLE students(
+        ->     id INT AUTO_INCREMENT PRIMARY KEY,
+        ->     first_name VARCHAR(100)
+        -> );
+    Query OK, 0 rows affected (0.01 sec)
+
+    mysql> CREATE TABLE papers(
+        ->     id INT AUTO_INCREMENT PRIMARY KEY,
+        ->     title VARCHAR(100),
+        ->     grade INT,
+        ->     student_id INT,
+        ->     FOREIGN KEY(student_id) REFERENCES students(id)
+        -> );
+    Query OK, 0 rows affected (0.01 sec)
+
+    mysql> INSERT INTO students (first_name)
+        -> VALUES  ('Caleb'),
+        ->         ('Samantha'),
+        ->         ('Raj'),
+        ->         ('Carlos'),
+        ->         ('Lisa');
+    Query OK, 5 rows affected (0.01 sec)
+    Records: 5  Duplicates: 0  Warnings: 0
+
+    mysql> INSERT INTO papers (student_id, title, grade)
+        -> VALUES  (1, 'My First Book Report', 60),
+        ->         (1, 'My Second Book Report', 75),
+        ->         (2, 'Russian Lit Through The Ages', 94),
+        ->         (2, 'De Montaigne and The Art of the Essay', 98),
+        ->         (4, 'Borges and Magical Realism', 89);
+    Query OK, 5 rows affected (0.01 sec)
+    Records: 5  Duplicates: 0  Warnings: 0
+
+-----------------------------------------------
+
+- Print student name, title, grade
+
+-----------------------------------------------
+
+    mysql> SELECT first_name AS Student, title as Paper, grade as Grade FROM students
+        -> INNER JOIN papers
+        ->     ON students.id=papers.student_id;
+    +----------+---------------------------------------+-------+
+    | Student  | Paper                                 | Grade |
+    +----------+---------------------------------------+-------+
+    | Caleb    | My First Book Report                  |    60 |
+    | Caleb    | My Second Book Report                 |    75 |
+    | Samantha | Russian Lit Through The Ages          |    94 |
+    | Samantha | De Montaigne and The Art of the Essay |    98 |
+    | Carlos   | Borges and Magical Realism            |    89 |
+    +----------+---------------------------------------+-------+
+    5 rows in set (0.00 sec)
+
+***Could also use a RIGHT JOIN and get the same result***
+
+-----------------------------------------------
+
+- Print all student's names, titles, grades
+
+-----------------------------------------------
+
+    mysql> SELECT first_name AS Student, title as Paper, grade as Grade FROM students
+        -> LEFT JOIN papers
+        ->     ON students.id=papers.student_id;
+    +----------+---------------------------------------+-------+
+    | Student  | Paper                                 | Grade |
+    +----------+---------------------------------------+-------+
+    | Caleb    | My First Book Report                  |    60 |
+    | Caleb    | My Second Book Report                 |    75 |
+    | Samantha | Russian Lit Through The Ages          |    94 |
+    | Samantha | De Montaigne and The Art of the Essay |    98 |
+    | Raj      | NULL                                  |  NULL |
+    | Carlos   | Borges and Magical Realism            |    89 |
+    | Lisa     | NULL                                  |  NULL |
+    +----------+---------------------------------------+-------+
+    7 rows in set (0.00 sec)
+
+-----------------------------------------------
+
+- Print all student's names, titles (missing if null), grades (0 if null)
+
+----------------------------------------------
+
+    mysql> SELECT first_name AS Student, IFNULL(title, 'Missing') as Paper, IFNULL(grade, 0) as Grade FROM students
+        -> LEFT JOIN papers
+        ->     ON students.id=papers.student_id;
+    +----------+---------------------------------------+-------+
+    | Student  | Paper                                 | Grade |
+    +----------+---------------------------------------+-------+
+    | Caleb    | My First Book Report                  |    60 |
+    | Caleb    | My Second Book Report                 |    75 |
+    | Samantha | Russian Lit Through The Ages          |    94 |
+    | Samantha | De Montaigne and The Art of the Essay |    98 |
+    | Raj      | Missing                               |     0 |
+    | Carlos   | Borges and Magical Realism            |    89 |
+    | Lisa     | Missing                               |     0 |
+    +----------+---------------------------------------+-------+
+    7 rows in set (0.00 sec)
+
+-----------------------------------------------
+
+- Print student names, average grade
+
+----------------------------------------------
+
+    mysql> SELECT first_name AS Student, IFNULL(AVG(grade), 0) AS Grade FROM students
+        -> LEFT JOIN papers
+        ->     ON students.id=papers.student_id
+        -> GROUP BY students.id
+        -> ORDER BY Grade DESC;
+    +----------+---------+
+    | Student  | Grade   |
+    +----------+---------+
+    | Samantha | 96.0000 |
+    | Carlos   | 89.0000 |
+    | Caleb    | 67.5000 |
+    | Lisa     |  0.0000 |
+    | Raj      |  0.0000 |
+    +----------+---------+
+    5 rows in set (0.00 sec)
+
+----------------------------------------------
+
+- Print student names, average grade, with pass/fail status (75 or higher passes)
+
+----------------------------------------------
+
+    mysql> SELECT first_name AS Student, IFNULL(AVG(grade), 0) AS Grade,
+        ->     CASE
+        ->         WHEN AVG(grade) >= 75 THEN 'Passing'
+        ->         ELSE 'Failing'
+        ->     END AS 'Passing/Failing' FROM students
+        -> LEFT JOIN papers
+        ->     ON students.id=papers.student_id
+        -> GROUP BY students.id
+        -> ORDER BY Grade DESC;
+    +----------+---------+-----------------+
+    | Student  | Grade   | Passing/Failing |
+    +----------+---------+-----------------+
+    | Samantha | 96.0000 | Passing         |
+    | Carlos   | 89.0000 | Passing         |
+    | Caleb    | 67.5000 | Failing         |
+    | Lisa     |  0.0000 | Failing         |
+    | Raj      |  0.0000 | Failing         |
+    +----------+---------+-----------------+
+    5 rows in set (0.00 sec)
+
+***As 'NULL >= 75' is NULL, the CASE statement is skipping over it, and counting NULL toward the ELSE of the statement.***
+***Adding "WHEN AVG(grade) IS NULL THEN 'FAILING'" is a good idea to be sure that NULL doesn't askew the CASE statement.***
+
+********************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
