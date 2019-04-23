@@ -6843,6 +6843,17 @@ Reviewers Data
     ERROR 1050 (42S01): Table 'users' already exists
     Query OK, 0 rows affected (0.08 sec)
 
+    mysql> DESCRIBE photos;
+    +------------+--------------+------+-----+-------------------+----------------+
+    | Field      | Type         | Null | Key | Default           | Extra          |
+    +------------+--------------+------+-----+-------------------+----------------+
+    | id         | int(11)      | NO   | PRI | NULL              | auto_increment |
+    | image_url  | varchar(255) | NO   |     | NULL              |                |
+    | user_id    | int(11)      | NO   | MUL | NULL              |                |
+    | created_at | timestamp    | NO   |     | CURRENT_TIMESTAMP |                |
+    +------------+--------------+------+-----+-------------------+----------------+
+    4 rows in set (0.01 sec)
+
 ********************************************************************************
 
 ### COMMENTS Schema
@@ -6860,8 +6871,7 @@ Reviewers Data
 - user_id <=> users.id
 - photo_id <=> photos.id
 
-
-
+--------------------------
 
     CREATE TABLE comments (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -6879,6 +6889,18 @@ Reviewers Data
     ERROR 1050 (42S01): Table 'photos' already exists
     Query OK, 0 rows affected (0.08 sec)
 
+    mysql> DESCRIBE comments;
+    +--------------+--------------+------+-----+-------------------+----------------+
+    | Field        | Type         | Null | Key | Default           | Extra          |
+    +--------------+--------------+------+-----+-------------------+----------------+
+    | id           | int(11)      | NO   | PRI | NULL              | auto_increment |
+    | comment_text | varchar(255) | NO   |     | NULL              |                |
+    | user_id      | int(11)      | NO   | MUL | NULL              |                |
+    | photo_id     | int(11)      | NO   | MUL | NULL              |                |
+    | created_at   | timestamp    | NO   |     | CURRENT_TIMESTAMP |                |
+    +--------------+--------------+------+-----+-------------------+----------------+
+    5 rows in set (0.00 sec)
+
 ********************************************************************************
 
 ### LIKES Schema
@@ -6894,6 +6916,91 @@ Reviewers Data
 - Very simple set up
 - user_id <=> users.id
 - photo_id <=> photos.id
+- No unique id for likes, as there will be no reference to it in separate tables
+
+--------------------------
+
+    CREATE TABLE likes (
+        user_id INT NOT NULL,
+        photo_id INT NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY(user_id) REFERENCES users(id),
+        FOREIGN KEY(photo_id) REFERENCES photos(id),
+        PRIMARY KEY(user_id, photo_id)
+    );
+
+    mysql> source MySQL/instagram/ig_clone.sql;
+    ERROR 1007 (HY000): Can't create database 'ig_clone'; database exists
+    Database changed
+    ERROR 1050 (42S01): Table 'users' already exists
+    ERROR 1050 (42S01): Table 'photos' already exists
+    ERROR 1050 (42S01): Table 'comments' already exists
+    Query OK, 0 rows affected (0.07 sec)
+
+    mysql> DESCRIBE likes;
+    +------------+-----------+------+-----+-------------------+-------+
+    | Field      | Type      | Null | Key | Default           | Extra |
+    +------------+-----------+------+-----+-------------------+-------+
+    | user_id    | int(11)   | NO   | PRI | NULL              |       |
+    | photo_id   | int(11)   | NO   | PRI | NULL              |       |
+    | created_at | timestamp | NO   |     | CURRENT_TIMESTAMP |       |
+    +------------+-----------+------+-----+-------------------+-------+
+    3 rows in set (0.00 sec)
+
+*****************************
+
+### FOLLOWS Schema
+
+    +---------------+
+    | FOLLOWS       |
+    +---------------+
+    | follower_id   |
+    | followee_id   |
+    | created_at    |
+    +---------------+
+
+- follower_id <=> users.id
+- followee_id <=> users.id
+
+----------------------------
+
+    CREATE TABLE follows (
+        follower_id INT NOT NULL,
+        followee_id INT NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY(follower_id) REFERENCES users(id),
+        FOREIGN KEY(followee_id) REFERENCES users(id),
+        PRIMARY KEY(follower_id, followee_id)
+    );
+
+    mysql> source MySQL/instagram/ig_clone.sql;
+    ERROR 1007 (HY000): Can't create database 'ig_clone'; database exists
+    Database changed
+    ERROR 1050 (42S01): Table 'users' already exists
+    ERROR 1050 (42S01): Table 'photos' already exists
+    ERROR 1050 (42S01): Table 'comments' already exists
+    ERROR 1050 (42S01): Table 'likes' already exists
+    Query OK, 0 rows affected (0.07 sec)
+
+    mysql> DESCRIBE follows;
+    +-------------+-----------+------+-----+-------------------+-------+
+    | Field       | Type      | Null | Key | Default           | Extra |
+    +-------------+-----------+------+-----+-------------------+-------+
+    | follower_id | int(11)   | NO   | PRI | NULL              |       |
+    | followee_id | int(11)   | NO   | PRI | NULL              |       |
+    | created_at  | timestamp | NO   |     | CURRENT_TIMESTAMP |       |
+    +-------------+-----------+------+-----+-------------------+-------+
+    3 rows in set (0.00 sec)
+
+***********************************
+
+### HASHTAGS Schema
+
+- Could set up by adding a TAGS column to the Photos table (ADVANTAGE: easy to implement | DISADVANTAGE: cannot store additional info, like when the first was used and have to be careful when searching)
+- Could use two tables: Photos & Tags (ADVANTAGE: unlimited tags | DISADVANTAGE: slower than previous option)
+- BEST OPTION: Use 3 tables; Photos, Photo_Tags, Tags (ADVANTAGE: unlimited tags, can add additional info | DISADVANTAGE: more work when inserting/updating, have to worry about orphans)
+
+--------------------------------
 
 
 
