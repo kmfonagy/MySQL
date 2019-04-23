@@ -6766,12 +6766,118 @@ Reviewers Data
 
 ********************************************************************************
 
+### Schema Design
 
+------------------------------------------
 
+    +---------------+
+    | USERS         |
+    +---------------+
+    | id            |
+    | username      |
+    | created_at    |
+    +---------------+
 
+*** Super simple set up ***
+° id = INT
+° username = VARCHAR
+° created_at = TIMESTAMP when the user signs up / default of NOW
+° Work done in /instagram/ig_clone.sql
 
+-------------------------------------------
 
+    CREATE DATABASE ig_clone;
+    USE ig_clone;
 
+    CREATE TABLE users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255) UNIQUE NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW()
+    );
+
+    mysql> source MySQL/instagram/ig_clone.sql                                                                                                                               
+    Query OK, 1 row affected (0.00 sec)
+
+    Database changed
+    Query OK, 0 rows affected (0.07 sec)
+
+    mysql> DESCRIBE users;
+    +------------+--------------+------+-----+-------------------+----------------+
+    | Field      | Type         | Null | Key | Default           | Extra          |
+    +------------+--------------+------+-----+-------------------+----------------+
+    | id         | int(11)      | NO   | PRI | NULL              | auto_increment |
+    | username   | varchar(255) | NO   | UNI | NULL              |                |
+    | created_at | timestamp    | NO   |     | CURRENT_TIMESTAMP |                |
+    +------------+--------------+------+-----+-------------------+----------------+
+    3 rows in set (0.00 sec)
+    
+********************************************************************************
+
+### Adding Photos schema
+
+    +---------------+
+    | PHOTOS        |
+    +---------------+
+    | id            |
+    | image_url     |
+    | user_id       |
+    | created_at    |
+    +---------------+
+
+° user_id poins to users.id
+
+-----------------------------------
+
+    CREATE TABLE photos (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        image_url VARCHAR(255) NOT NULL,
+        user_id INT NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY(user_id) REFERENCES users(id)
+    );
+
+    mysql> source MySQL/instagram/ig_clone.sql;
+    ERROR 1007 (HY000): Can't create database 'ig_clone'; database exists
+    Database changed
+    ERROR 1050 (42S01): Table 'users' already exists
+    Query OK, 0 rows affected (0.08 sec)
+
+********************************************************************************
+
+### COMMENTS Schema
+
+    +---------------+
+    | COMMENTS      |
+    +---------------+
+    | id            |
+    | comment_text  |
+    | user_id       |
+    | photo_id      |
+    | created_at    |
+    +---------------+
+
+° user_id <=> users.id
+° photo_id <=> photos.id
+
+-------------------------------------------
+
+    CREATE TABLE comments (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        comment_text VARCHAR(255) NOT NULL,
+        user_id INT NOT NULL,
+        photo_id INT NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        FOREIGN KEY(user_id) REFERENCES users(id),
+        FOREIGN KEY(photo_id) REFERENCES photos(id)
+    );
+
+    mysql> source MySQL/instagram/ig_clone.sql;                                                                                                                              ERROR 1007 (HY000): Can't create database 'ig_clone'; database exists
+    Database changed
+    ERROR 1050 (42S01): Table 'users' already exists
+    ERROR 1050 (42S01): Table 'photos' already exists
+    Query OK, 0 rows affected (0.08 sec)
+
+********************************************************************************
 
 
 
