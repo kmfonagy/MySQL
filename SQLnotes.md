@@ -6860,7 +6860,6 @@ Reviewers Data
 - user_id <=> users.id
 - photo_id <=> photos.id
 
--------------------------------------------
 
     CREATE TABLE comments (
         id INT AUTO_INCREMENT PRIMARY KEY,
