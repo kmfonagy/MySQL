@@ -6999,8 +6999,73 @@ Reviewers Data
 - Could set up by adding a TAGS column to the Photos table (ADVANTAGE: easy to implement | DISADVANTAGE: cannot store additional info, like when the first was used and have to be careful when searching)
 - Could use two tables: Photos & Tags (ADVANTAGE: unlimited tags | DISADVANTAGE: slower than previous option)
 - BEST OPTION: Use 3 tables; Photos, Photo_Tags, Tags (ADVANTAGE: unlimited tags, can add additional info | DISADVANTAGE: more work when inserting/updating, have to worry about orphans)
+- [Tagging Speed Tests](http://howto.philippkeller.com/2005/06/19/Tagsystems-performance-tests/) - not the one referred to in the course, but good substitute
 
 --------------------------------
+
+    CREATE TABLE tags(
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        tag_name VARCHAR(255) UNIQUE,
+        created_at TIMESTAMP DEFAULT NOW()
+    );
+
+    CREATE TABLE photo_tags(
+        photo_id INT NOT NULL,
+        tag_id INT NOT NULL,
+        FOREIGN KEY(photo_id) REFERENCES photos(id),
+        FOREIGN KEY(tag_id) REFERENCES tags(id),
+        PRIMARY KEY(photo_id, tag_id)
+    );
+
+    mysql> source MySQL/instagram/ig_clone.sql;                                                                                                                              ERROR 1007 (HY000): Can't create database 'ig_clone'; database exists
+    Database changed
+    ERROR 1050 (42S01): Table 'users' already exists
+    ERROR 1050 (42S01): Table 'photos' already exists
+    ERROR 1050 (42S01): Table 'comments' already exists
+    ERROR 1050 (42S01): Table 'likes' already exists
+    ERROR 1050 (42S01): Table 'follows' already exists
+    Query OK, 0 rows affected (0.08 sec)
+
+    Query OK, 0 rows affected (0.08 sec)
+
+    mysql> SHOW TABLES;
+    +--------------------+
+    | Tables_in_ig_clone |
+    +--------------------+
+    | comments           |
+    | follows            |
+    | likes              |
+    | photo_tags         |
+    | photos             |
+    | tags               |
+    | users              |
+    +--------------------+
+    7 rows in set (0.00 sec)
+
+    mysql> DESCRIBE tags;
+    +------------+--------------+------+-----+-------------------+----------------+
+    | Field      | Type         | Null | Key | Default           | Extra          |
+    +------------+--------------+------+-----+-------------------+----------------+
+    | id         | int(11)      | NO   | PRI | NULL              | auto_increment |
+    | tag_name   | varchar(255) | YES  | UNI | NULL              |                |
+    | created_at | timestamp    | NO   |     | CURRENT_TIMESTAMP |                |
+    +------------+--------------+------+-----+-------------------+----------------+
+    3 rows in set (0.00 sec)
+
+    mysql> DESCRIBE photo_tags;
+    +----------+---------+------+-----+---------+-------+
+    | Field    | Type    | Null | Key | Default | Extra |
+    +----------+---------+------+-----+---------+-------+
+    | photo_id | int(11) | NO   | PRI | NULL    |       |
+    | tag_id   | int(11) | NO   | PRI | NULL    |       |
+    +----------+---------+------+-----+---------+-------+
+    2 rows in set (0.00 sec)
+
+
+
+
+
+
 
 
 
