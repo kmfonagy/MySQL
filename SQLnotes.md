@@ -6779,10 +6779,11 @@ Reviewers Data
     +---------------+
 
 *** Super simple set up ***
-° id = INT
-° username = VARCHAR
-° created_at = TIMESTAMP when the user signs up / default of NOW
-° Work done in /instagram/ig_clone.sql
+
+- id = INT
+- username = VARCHAR
+- created_at = TIMESTAMP when the user signs up / default of NOW
+- Work done in /instagram/ig_clone.sql
 
 -------------------------------------------
 
@@ -6824,7 +6825,7 @@ Reviewers Data
     | created_at    |
     +---------------+
 
-° user_id poins to users.id
+- user_id poins to users.id
 
 -----------------------------------
 
@@ -6856,8 +6857,8 @@ Reviewers Data
     | created_at    |
     +---------------+
 
-° user_id <=> users.id
-° photo_id <=> photos.id
+- user_id <=> users.id
+- photo_id <=> photos.id
 
 -------------------------------------------
 
@@ -6878,6 +6879,22 @@ Reviewers Data
     Query OK, 0 rows affected (0.08 sec)
 
 ********************************************************************************
+
+### LIKES Schema
+
+    +---------------+
+    | LIKES         |
+    +---------------+
+    | user_id       |
+    | photo_id      |
+    | created_at    |
+    +---------------+
+
+- Very simple set up
+- user_id <=> users.id
+- photo_id <=> photos.id
+
+
 
 
 
