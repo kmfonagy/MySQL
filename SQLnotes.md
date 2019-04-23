@@ -6689,25 +6689,82 @@ Reviewers Data
     +-----------------+-------+------+------+----------------+------------+
     7 rows in set (0.00 sec)
 
+------------------------------------------------------------
 
+#### TV Joins Challenge 7
 
+- 3 Tables
 
+------------------------------------------------------------
 
+    mysql> SELECT 
+        ->     title AS Title,
+        ->     rating AS Rating,
+        ->     CONCAT(first_name, ' ', last_name) AS Reviewer
+        -> FROM reviewers
+        -> INNER JOIN reviews
+        ->     ON reviewers.id = reviews.reviewer_id
+        -> INNER JOIN series
+        ->     ON series.id = reviews.series_id
+        -> ORDER BY Title;
+    +----------------------+--------+-----------------+
+    | Title                | Rating | Reviewer        |
+    +----------------------+--------+-----------------+
+    | Archer               |    8.0 | Thomas Stoneman |
+    | Archer               |    7.7 | Domingo Cortes  |
+    | Archer               |    8.5 | Kimbra Masters  |
+    | Archer               |    7.5 | Wyatt Skaggs    |
+    | Archer               |    8.9 | Colt Steele     |
+    | Arrested Development |    8.1 | Thomas Stoneman |
+    | Arrested Development |    6.0 | Domingo Cortes  |
+    | Arrested Development |    8.0 | Kimbra Masters  |
+    | Arrested Development |    8.4 | Pinkie Petit    |
+    | Arrested Development |    9.9 | Colt Steele     |
+    | Bob's Burgers        |    7.0 | Thomas Stoneman |
+    | Bob's Burgers        |    8.0 | Domingo Cortes  |
+    | Bob's Burgers        |    7.1 | Kimbra Masters  |
+    | Bob's Burgers        |    7.5 | Pinkie Petit    |
+    | Bob's Burgers        |    8.0 | Colt Steele     |
+    | Bojack Horseman      |    8.5 | Colt Steele     |
+    | Bojack Horseman      |    7.6 | Wyatt Skaggs    |
+    | Bojack Horseman      |    7.5 | Thomas Stoneman |
+    | Bojack Horseman      |    8.3 | Domingo Cortes  |
+    | Bojack Horseman      |    7.8 | Kimbra Masters  |
+    | Breaking Bad         |    9.5 | Thomas Stoneman |
+    | Breaking Bad         |    9.1 | Domingo Cortes  |
+    | Breaking Bad         |    9.0 | Kimbra Masters  |
+    | Breaking Bad         |    9.9 | Colt Steele     |
+    | Breaking Bad         |    9.3 | Wyatt Skaggs    |
+    | Curb Your Enthusiasm |    8.4 | Wyatt Skaggs    |
+    | Curb Your Enthusiasm |    8.8 | Domingo Cortes  |
+    | Curb Your Enthusiasm |    7.8 | Kimbra Masters  |
+    | Curb Your Enthusiasm |    9.1 | Colt Steele     |
+    | Curb Your Enthusiasm |    6.5 | Wyatt Skaggs    |
+    | Fargo                |    9.1 | Wyatt Skaggs    |
+    | Fargo                |    9.7 | Colt Steele     |
+    | Freaks and Geeks     |    8.8 | Pinkie Petit    |
+    | Freaks and Geeks     |    8.5 | Domingo Cortes  |
+    | Freaks and Geeks     |    7.8 | Wyatt Skaggs    |
+    | Freaks and Geeks     |    9.3 | Colt Steele     |
+    | General Hospital     |    4.5 | Colt Steele     |
+    | General Hospital     |    4.3 | Pinkie Petit    |
+    | General Hospital     |    6.8 | Kimbra Masters  |
+    | General Hospital     |    5.8 | Domingo Cortes  |
+    | General Hospital     |    5.5 | Wyatt Skaggs    |
+    | Halt and Catch Fire  |    9.9 | Colt Steele     |
+    | Seinfeld             |    8.0 | Kimbra Masters  |
+    | Seinfeld             |    7.2 | Domingo Cortes  |
+    | Stranger Things      |    8.9 | Kimbra Masters  |
+    | Stranger Things      |    8.5 | Wyatt Skaggs    |
+    | Stranger Things      |    8.9 | Domingo Cortes  |
+    +----------------------+--------+-----------------+
+    47 rows in set (0.00 sec)
 
+********************************************************************************
 
+## Instagram Clone
 
-
-
-
-
-
-
-
-
-
-
-
-
+********************************************************************************
 
 
 
