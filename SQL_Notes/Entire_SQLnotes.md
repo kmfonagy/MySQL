@@ -7061,6 +7061,290 @@ Reviewers Data
     +----------+---------+------+-----+---------+-------+
     2 rows in set (0.00 sec)
 
+**********************************************************
+
+## WORKING WITH INSTAGRAM DATA
+
+*********************************************************
+
+### INSERTING DATA SET
+
+- Updated ig_clone.sql to include "DROP DATABASE IF EXISTS ig_clone;"
+
+--------------------------------
+
+    mysql> source MySQL/instagram/ig_clone.sql;
+    Query OK, 7 rows affected (0.25 sec)
+
+    Query OK, 1 row affected (0.00 sec)
+
+    Database changed
+    Query OK, 0 rows affected (0.07 sec)
+
+    Query OK, 0 rows affected (0.08 sec)
+
+    Query OK, 0 rows affected (0.09 sec)
+
+    Query OK, 0 rows affected (0.08 sec)
+
+    Query OK, 0 rows affected (0.08 sec)
+
+    Query OK, 0 rows affected (0.08 sec)
+
+    Query OK, 0 rows affected (0.08 sec)
+
+    Query OK, 100 rows affected (0.02 sec)
+    Records: 100  Duplicates: 0  Warnings: 0
+
+    Query OK, 257 rows affected (0.02 sec)
+    Records: 257  Duplicates: 0  Warnings: 0
+
+    Query OK, 7623 rows affected (0.24 sec)
+    Records: 7623  Duplicates: 0  Warnings: 0
+
+    Query OK, 7488 rows affected (0.41 sec)
+    Records: 7488  Duplicates: 0  Warnings: 0
+
+    Query OK, 8782 rows affected (0.37 sec)
+    Records: 8782  Duplicates: 0  Warnings: 0
+
+    Query OK, 21 rows affected (0.01 sec)
+    Records: 21  Duplicates: 0  Warnings: 0
+
+    Query OK, 501 rows affected (0.03 sec)
+    Records: 501  Duplicates: 0  Warnings: 0
+
+*****************************
+
+### INSTAGRAM CODE CHALLENGES
+
+--------------------------------------
+
+#### CHALLENGE 1
+
+- Find 5 oldest users
+
+--------------------------------------
+
+    mysql> SELECT 
+        ->     username AS Username,
+        ->     DATE_FORMAT(created_at, '%m/%d/%Y') AS Joined
+        -> FROM users
+        -> ORDER BY created_at
+        ->     LIMIT 5;
+    +------------------+------------+
+    | Username         | Joined     |
+    +------------------+------------+
+    | Darby_Herzog     | 05/06/2016 |
+    | Emilio_Bernier52 | 05/06/2016 |
+    | Elenor88         | 05/08/2016 |
+    | Nicole71         | 05/09/2016 |
+    | Jordyn.Jacobson2 | 05/14/2016 |
+    +------------------+------------+
+    5 rows in set (0.00 sec)
+
+    mysql> SELECT 
+        ->     username AS Username,
+        ->     DATE_FORMAT(created_at, '%M %D, %Y') AS Joined
+        -> FROM users
+        -> ORDER BY created_at
+        ->     LIMIT 5;
+    +------------------+----------------+
+    | Username         | Joined         |
+    +------------------+----------------+
+    | Darby_Herzog     | May 6th, 2016  |
+    | Emilio_Bernier52 | May 6th, 2016  |
+    | Elenor88         | May 8th, 2016  |
+    | Nicole71         | May 9th, 2016  |
+    | Jordyn.Jacobson2 | May 14th, 2016 |
+    +------------------+----------------+
+    5 rows in set (0.00 sec)
+
+--------------------------------------
+
+#### CHALLENGE 2
+
+- Most popular registration date
+
+--------------------------------------
+
+    mysql> SELECT 
+        ->     DAYNAME(created_at) AS Day,
+        ->     COUNT(*) AS Total
+        -> FROM users
+        -> GROUP BY Day
+        -> ORDER BY Total DESC
+        -> LIMIT 2;
+    +----------+-------+
+    | Day      | Total |
+    +----------+-------+
+    | Thursday |    16 |
+    | Sunday   |    16 |
+    +----------+-------+
+    2 rows in set (0.01 sec)
+
+--------------------------------------
+
+#### CHALLENGE 3
+
+- Find users who have never posted a photo
+
+--------------------------------------
+
+    mysql> SELECT
+        ->     username AS User,
+        ->     DATE_FORMAT(users.created_at, '%m/%d/%Y') AS Joined,
+        ->     IFNULL(image_url, 'No Posts') AS Posts
+        -> FROM users
+        -> LEFT JOIN photos
+        ->     ON users.id = photos.user_id
+        -> WHERE photos.id IS NUll
+        -> ORDER BY Joined DESC;
+    +---------------------+------------+----------+
+    | User                | Joined     | Posts    |
+    +---------------------+------------+----------+
+    | Duane60             | 12/21/2016 | No Posts |
+    | Kasandra_Homenick   | 12/12/2016 | No Posts |
+    | Aniya_Hackett       | 12/07/2016 | No Posts |
+    | Franco_Keebler64    | 11/13/2016 | No Posts |
+    | Bartholome.Bernhard | 11/06/2016 | No Posts |
+    | Morgan.Kassulke     | 10/30/2016 | No Posts |
+    | Tierra.Trantow      | 10/03/2016 | No Posts |
+    | Leslie67            | 09/21/2016 | No Posts |
+    | Jessyca_West        | 09/14/2016 | No Posts |
+    | Ollie_Ledner37      | 08/04/2016 | No Posts |
+    | Janelle.Nikolaus81  | 07/21/2016 | No Posts |
+    | Mckenna17           | 07/17/2016 | No Posts |
+    | Pearl7              | 07/08/2016 | No Posts |
+    | Mike.Auer39         | 07/01/2016 | No Posts |
+    | Bethany20           | 06/03/2016 | No Posts |
+    | Nia_Haag            | 05/14/2016 | No Posts |
+    | Darby_Herzog        | 05/06/2016 | No Posts |
+    | Maxwell.Halvorson   | 04/18/2017 | No Posts |
+    | Esmeralda.Mraz57    | 03/03/2017 | No Posts |
+    | Linnea59            | 02/07/2017 | No Posts |
+    | Jaclyn81            | 02/06/2017 | No Posts |
+    | David.Osinski47     | 02/05/2017 | No Posts |
+    | Julien_Schmidt      | 02/02/2017 | No Posts |
+    | Hulda.Macejkovic    | 01/25/2017 | No Posts |
+    | Rocio33             | 01/23/2017 | No Posts |
+    | Esther.Zulauf61     | 01/14/2017 | No Posts |
+    +---------------------+------------+----------+
+    26 rows in set (0.00 sec)
+
+***Could have also used a RIGHT JOIN, to get the same result***
+
+--------------------------------------
+
+#### CHALLENGE 4
+
+- Identify most popular photo & it's user
+
+--------------------------------------
+
+    mysql> SELECT
+        ->     photos.image_url as Photo,
+        ->     users.username as 'Posted by User',
+        ->     COUNT(likes.user_id) AS Likes
+        -> FROM photos
+        -> INNER JOIN likes
+        ->     ON likes.photo_id = photos.id
+        -> INNER JOIN users
+        ->     ON users.id = photos.user_id
+        -> GROUP BY photos.id
+        -> ORDER BY Likes DESC
+        ->     LIMIT 1;
+    +---------------------+----------------+-------+
+    | Photo               | Posted by User | Likes |
+    +---------------------+----------------+-------+
+    | https://jarret.name | Zack_Kemmer93  |    48 |
+    +---------------------+----------------+-------+
+    1 row in set (0.00 sec)
+
+--------------------------------------
+
+#### CHALLENGE 5
+
+- Average Posts for Users
+
+--------------------------------------
+
+    mysql> SELECT
+        ->     (SELECT
+        ->         COUNT(*)
+        ->     FROM photos) /
+        ->     (SELECT
+        ->         COUNT(*)
+        ->     FROM users) AS Average;
+    +---------+
+    | Average |
+    +---------+
+    |  2.5700 |
+    +---------+
+    1 row in set (0.00 sec)
+
+--------------------------------------
+
+#### CHALLENGE 6
+
+- Five Most Commonly Used Hashtags
+
+--------------------------------------
+
+    mysql> SELECT
+        ->     tag_name AS Hashtag,
+        ->     COUNT(*) AS Used
+        -> FROM tags
+        -> INNER JOIN photo_tags
+        ->     ON photo_tags.tag_id = tags.id
+        -> GROUP BY Hashtag
+        -> ORDER BY Used DESC
+        ->     LIMIT 5;
+    +---------+------+
+    | Hashtag | Used |
+    +---------+------+
+    | smile   |   59 |
+    | beach   |   42 |
+    | party   |   39 |
+    | fun     |   38 |
+    | concert |   24 |
+    +---------+------+
+    5 rows in set (0.01 sec)
+
+--------------------------------------
+
+#### CHALLENGE 7
+
+- Identifying Bots
+
+--------------------------------------
+
+    mysql> SELECT
+        ->     username AS User,
+        ->     COUNT(*) AS Likes
+        -> FROM users
+        -> INNER JOIN likes
+        ->     ON likes.user_id = users.id
+        -> GROUP BY likes.user_id
+        -> HAVING Likes = (SELECT COUNT(*) FROM photos);
+    +--------------------+-------+
+    | User               | Likes |
+    +--------------------+-------+
+    | Aniya_Hackett      |   257 |
+    | Jaclyn81           |   257 |
+    | Rocio33            |   257 |
+    | Maxwell.Halvorson  |   257 |
+    | Ollie_Ledner37     |   257 |
+    | Mckenna17          |   257 |
+    | Duane60            |   257 |
+    | Julien_Schmidt     |   257 |
+    | Mike.Auer39        |   257 |
+    | Nia_Haag           |   257 |
+    | Leslie67           |   257 |
+    | Janelle.Nikolaus81 |   257 |
+    | Bethany20          |   257 |
+    +--------------------+-------+
+    13 rows in set (0.01 sec)
 
 
 
